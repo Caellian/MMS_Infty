@@ -1,0 +1,65 @@
+---
+layout: ./main.njk
+---
+
+<aside class="nav-extra">
+  <div>
+    <h3>Consulting</h3>
+    <div>
+      blah
+    </div>
+  </div>
+  <div>
+    <h3>Contracting</h3>
+    <div>
+      blah
+    </div>
+  </div>
+  <div>
+    <h3>Certification</h3>
+    <div>
+      blah
+    </div>
+  </div>
+</aside>
+
+<div class="hero">
+  <span>We help businesses<br/><span>scale</span>.</span>
+</div>
+
+<script>
+  let e = document.querySelector(".hero");
+  let repeat = () => {
+    e.style = `--time: ${Date.now().toString()}`;
+    requestAnimationFrame(repeat);
+  };
+  requestAnimationFrame(repeat);
+</script>
+
+<div class="staff">
+  Staff members
+</div>
+
+<style>
+  .hero {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    width: 100svw;
+    height: 60vh;
+    height: 60svh;
+
+    background-image: paint(grid);
+  }
+
+  .hero span {
+    width: max-content;
+    font-size: 3rem;
+    font-family: var(--fnt-accent);
+  }
+
+  .hero span span {
+    font-size: 5rem;
+  }
+</style>

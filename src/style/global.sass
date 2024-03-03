@@ -1,0 +1,89 @@
+@import "fonts.css"
+
+:root
+  font-family: Lato, system-ui, Avenir, Helvetica, Arial, sans-serif
+  line-height: 1.5
+  font-weight: normal
+
+  color: #e9e9e9ee
+  background-color: #0f0f0f
+
+  font-synthesis: none
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+  --fnt-accent: 'Anta', sans-serif
+
+  --c-primary: #00a2ab
+  --c-secondary: #0059c6
+
+  --nav-height: 3.5rem
+  --pad-tiny: 0.25rem
+  --pad-small: 0.5rem
+  --pad-large: 2rem
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+nav
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: var(--pad-small)
+
+  height: var(--nav-height)
+  padding: var(--pad-small)
+
+  border-bottom: 2px solid gray
+  margin: var(--pad-small)
+  margin-bottom: 0
+
+  z-index: 10
+
+  h1
+    font-family: var(--fnt-accent)
+
+    a
+      text-decoration: none
+      color: white
+      display: flex
+      align-items: center
+      gap: 0.5ch
+
+      img
+        height: calc(var(--nav-height) * 0.8)
+
+  .links
+    display: flex
+    gap: 0.8rem
+    a
+      display: inline-block
+      color: white
+      font-weight: bold
+      text-decoration: none
+      border-bottom: 2px solid var(--c-primary)
+
+      padding: var(--pad-tiny)
+      padding-bottom: calc(var(--pad-tiny) * 0.5)
+      margin-bottom: calc(var(--pad-tiny) * 0.5)
+
+      transition: all 200ms linear
+
+      &:hover
+        padding-bottom: var(--pad-tiny)
+        margin-bottom: 0
+
+.nav-extra
+  display: flex
+  margin: 0 var(--pad-large)
+  padding: var(--pad-tiny)
+
+  border-left: 2px solid gray
+  border-right: 2px solid gray
+  border-bottom: 2px solid gray
+
+  div
+    flex-grow: 1

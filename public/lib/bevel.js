@@ -47,8 +47,7 @@ registerPaint('bevel', class {
         let strokeWidth = Number.parseFloat(properties.get("--bevelStrokeWidth").toString()) || 2;
         let inset = Number.parseFloat(properties.get("--bevelInset").toString()) || 10;
         let corners = properties.get("--bevelCorners").toString() || "tl tr bl br";
-        
-        console.log(corners);
+         
         corners = corners.split(" ");
 
         ctx.fillStyle = fill;

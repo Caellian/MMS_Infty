@@ -27,7 +27,7 @@ function xyHash(posX, posY) {
  * @property {number} height
  * 
  * @typedef {object} PaintProperties
- * @property {(key: string) => string | undefined} get
+ * @property {(key: string) => CSSUnparsedValue} get
 */
 
 registerPaint('grid', class {

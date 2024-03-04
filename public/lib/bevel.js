@@ -5,6 +5,17 @@ const CORNERS = Object.freeze({
     BOTTOM_RIGHT: "br",
 })
 
+/**
+ * @typedef {CanvasRenderingContext2D} PaintRenderingContext2D
+ * 
+ * @typedef {object} PaintSize
+ * @property {number} width
+ * @property {number} height
+ * 
+ * @typedef {object} PaintProperties
+ * @property {(key: string) => CSSUnparsedValue} get
+*/
+
 registerPaint('bevel', class {
 	static get contextOptions() {
 		return {
@@ -31,13 +42,14 @@ registerPaint('bevel', class {
      * @param {PaintProperties} properties 
      */
     paint(ctx, geom, properties) {
-        let fill = properties.get("--bevelFill") || "#000";
-        let stroke = properties.get("--bevelStroke") || "white";
-        let strokeWidth = Number.parseFloat(properties.get("--bevelStrokeWidth")) || 2;
-        let inset = Number.parseFloat(properties.get("--bevelInset")) || 10;
-        let corners = properties.get("--bevelCorners") || "tl,tr,bl,br";
+        let fill = properties.get("--bevelFill").toString() || "#000";
+        let stroke = properties.get("--bevelStroke").toString() || "white";
+        let strokeWidth = Number.parseFloat(properties.get("--bevelStrokeWidth").toString()) || 2;
+        let inset = Number.parseFloat(properties.get("--bevelInset").toString()) || 10;
+        let corners = properties.get("--bevelCorners").toString() || "tl tr bl br";
         
-        corners = corners.split(",");
+        console.log(corners);
+        corners = corners.split(" ");
 
         ctx.fillStyle = fill;
         ctx.strokeStyle = stroke;

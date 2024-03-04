@@ -2,6 +2,12 @@
 layout: ./main.njk
 ---
 
+<video width="1280" height="720" controls class="promo">
+    <source src="/vid/promo.webm" type="video/webm">
+    <source src="/vid/promo.mp4" type="video/mp4">
+    <p>Your browser cannot play the provided video file.</p>
+</video>
+
 <h2>Consulting</h2>
 <div class="left-right">
     <img src="/img/consulting.jpg" />
@@ -39,16 +45,48 @@ layout: ./main.njk
     </p>
 </div>
 
+<h2>Available Certificates</h2>
+
+<ul class="certificates">
+    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 20000-1:2018:</a></b> This standard is for Information Technology Service Management.</li>
+    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 23894:2023:</a></b> This standard provides guidance on risk management for Artificial Intelligence.</li>
+    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 27017:2015:</a></b> This standard is a code of practice for information security controls based on ISO/IEC 27002 for cloud services.</li>
+    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 27005:2022:</a></b> This standard provides guidance on managing information security risks.</li>
+    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 27001:2022:</a></b> This standard is for Information Security Management Systems.</li>
+    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 27002:2022:</a></b> This standard is for Information Security Controls.</li>
+    <li><b><a href="https://www.siscertifications.com/iso-certification-for-information-technology-industry/">ISO 9001:</a></b> This standard is for Quality Management System.</li>
+    <li><b><a href="https://www.siscertifications.com/iso-certification-for-information-technology-industry/">ISO 14001:</a></b> This standard is for Environmental Management System.</li>
+    <li><b><a href="https://www.siscertifications.com/iso-certification-for-information-technology-industry/">ISO 45001:</a></b> This standard is for Occupational Health and Safety Management System.</li>
+</ul>
+
 <style>
+.promo {
+    width: 80vw;
+    margin: 2rem auto;
+}
+
 .left-right {
     display: flex;
+    padding: 1rem;
+    gap: 2rem;
 }
 
 .left-right img {
-    width: 20vw;
+    width: 40vw;
+    object-fit: cover;
 }
 
 .left-right p {
     flex-grow: 1;
+}
+
+@media screen and (width <= 600) {
+    .left-right {
+        flex-direction: column;
+    }
+}
+
+.certificates {
+    margin: 3rem;
 }
 </style>

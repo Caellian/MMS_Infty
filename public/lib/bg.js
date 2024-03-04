@@ -1,5 +1,5 @@
 function loadModule(name) {
-    var p = CSS.paintWorklet.addModule(`/lib/${name}.js`);
+    var p = CSS.paintWorklet.addModule(`/MMS_Infty/lib/${name}.js`);
     if (p) {
         p
         .then(() => console.info(`Houdini '${name}' registered.`))

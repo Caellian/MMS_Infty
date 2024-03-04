@@ -1,0 +1,109 @@
+@import "./fonts.css";
+:root {
+  font-family: Lato, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: normal;
+  color: rgba(233, 233, 233, 0.9333333333);
+  --c-bg: #0f0f0f;
+  background-color: var(--c-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --fnt-accent: "Anta", sans-serif;
+  --c-primary: #00a2ab;
+  --c-secondary: #0059c6;
+  --nav-height: 3.5rem;
+  --pad-tiny: 0.25rem;
+  --pad-small: 0.5rem;
+  --pad-large: 2rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fnt-accent);
+}
+
+p {
+  max-width: 120ch;
+  text-align: justify;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--pad-small);
+  height: var(--nav-height);
+  padding: var(--pad-small);
+  border-bottom: 2px solid gray;
+  margin: var(--pad-small);
+  margin-bottom: 0;
+  z-index: 10;
+}
+nav h1 {
+  font-family: var(--fnt-accent);
+}
+nav h1 a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5ch;
+}
+nav h1 a img {
+  height: calc(var(--nav-height) * 0.6);
+}
+nav .links {
+  display: flex;
+  gap: 0.8rem;
+}
+nav .links a {
+  display: inline-block;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid var(--c-primary);
+  padding: var(--pad-tiny);
+  padding-bottom: calc(var(--pad-tiny) * 0.5);
+  margin-bottom: calc(var(--pad-tiny) * 0.5);
+  transition: all 200ms linear;
+}
+nav .links a:hover {
+  padding-bottom: var(--pad-tiny);
+  margin-bottom: 0;
+}
+
+.nav-extra {
+  position: absolute;
+  top: calc(var(--nav-height) + var(--pad-tiny) * 2);
+  margin: 0 var(--pad-large);
+  overflow: hidden;
+}
+.nav-extra .inner {
+  display: flex;
+  padding: var(--pad-tiny);
+  transform: translateY(-100%);
+  transition: transform 600ms linear;
+}
+.nav-extra .inner div {
+  flex-grow: 1;
+  padding: var(--pad-tiny);
+  text-align: justify;
+}
+.nav-extra.visible .inner {
+  transform: translateY(0%);
+}
+
+footer {
+  color: #444;
+  text-align: center;
+  padding: 1ch 0;
+}
+
+/*# sourceMappingURL=global.css.map */

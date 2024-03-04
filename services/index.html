@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infty - Tin Švagelj</title>
+    
+    <link rel="stylesheet" href="/css/global.css">
+  </head>
+  <body>
+    <nav>
+        <h1><a href="/"><img src="/logo.svg" /></a></h1>
+    
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/clanstvo">Učlani se</a>
+            <a href="/about">About Us</a>
+        </div>
+    </nav>
+    
+    <main>
+      <h2>Consulting</h2>
+<p>We believe in the power of collaboration and personalized advice. Our
+consulting services are designed to provide you with tailored solutions
+that meet your unique needs. We take the time to understand your business,
+identify opportunities, and create strategies that drive growth and
+innovation.</p>
+<h2>Contracting</h2>
+<p>We offer contracting services that are flexible, reliable, and customized
+to your project requirements. Our team of experts is committed to
+delivering high-quality results, on time and within budget. We value the
+trust you place in us and strive to exceed your expectations at every
+step.</p>
+<h2>Certification</h2>
+<p>Our certification services are designed to validate your skills and
+enhance your credibility in the tech industry. We offer a range of
+certifications that are recognized globally, providing you with a
+competitive edge. Our approach is personal and supportive, ensuring you
+have the resources you need to succeed.</p>
+
+    </main>
+
+    <footer>
+      Copyright &copy; 2023 Tin Švagelj. All rights reserved.
+    </footer>
+
+    <!-- Polyfill za: https://drafts.css-houdini.org/css-paint-api/ -->
+    <script src="/polyfill/houdini.js"></script>
+    <script src="/polyfill/transpilerLite.js"></script>
+		<script>
+      // Inject a tiny tranpiler to make IE11+ behave nicely:
+      try {
+        eval('class F {}');
+      }
+      catch(e) {
+        CSS.paintWorklet.transpile = window.transpilerLite;
+      }
+    </script>
+    
+    <!-- Houdini pozadine -->
+    <script src="/lib/bg.js"></script>
+  </body>
+</html>

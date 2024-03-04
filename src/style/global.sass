@@ -1,4 +1,4 @@
-@import "fonts.css"
+@import "./fonts.css"
 
 :root
   font-family: Lato, system-ui, Avenir, Helvetica, Arial, sans-serif
@@ -6,7 +6,9 @@
   font-weight: normal
 
   color: #e9e9e9ee
-  background-color: #0f0f0f
+
+  --c-bg: #0f0f0f
+  background-color: var(--c-bg)
 
   font-synthesis: none
   text-rendering: optimizeLegibility
@@ -27,6 +29,13 @@
   margin: 0
   padding: 0
   box-sizing: border-box
+
+h1,h2,h3,h4,h5,h6
+  font-family: var(--fnt-accent)
+
+p
+  max-width: 120ch
+  text-align: justify
 
 nav
   display: flex
@@ -54,7 +63,7 @@ nav
       gap: 0.5ch
 
       img
-        height: calc(var(--nav-height) * 0.8)
+        height: calc(var(--nav-height) * 0.6)
 
   .links
     display: flex
@@ -77,13 +86,30 @@ nav
         margin-bottom: 0
 
 .nav-extra
-  display: flex
+  position: absolute
+  top: calc(var(--nav-height) + var(--pad-tiny) * 2)
+
   margin: 0 var(--pad-large)
-  padding: var(--pad-tiny)
 
-  border-left: 2px solid gray
-  border-right: 2px solid gray
-  border-bottom: 2px solid gray
+  overflow: hidden
+  .inner
+    display: flex
+    padding: var(--pad-tiny)
 
-  div
-    flex-grow: 1
+    transform: translateY(-100%)
+    transition: transform 600ms linear
+
+    div
+      flex-grow: 1
+
+      padding: var(--pad-tiny)
+      text-align: justify
+
+  &.visible
+    .inner
+      transform: translateY(0%)
+
+footer
+  color: #444
+  text-align: center
+  padding: 1ch 0

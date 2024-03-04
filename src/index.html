@@ -2,35 +2,63 @@
 layout: ./main.njk
 ---
 
-<aside class="nav-extra">
-  <div>
-    <h3>Consulting</h3>
+<aside class="nav-extra visible">
+  <div class="inner">
     <div>
-      blah
+      <h3>Consulting</h3>
+      <div>
+        Our consulting services are designed to provide you with tailored
+        solutions that meet your unique needs.
+      </div>
     </div>
-  </div>
-  <div>
-    <h3>Contracting</h3>
     <div>
-      blah
+      <h3>Contracting</h3>
+      <div>
+        We offer contracting services that are flexible, reliable, and customized
+        to your project requirements.
+      </div>
     </div>
-  </div>
-  <div>
-    <h3>Certification</h3>
     <div>
-      blah
+      <h3>Certification</h3>
+      <div>
+        We offer a range of certifications that are recognized globally, providing
+        you with a competitive edge.
+      </div>
     </div>
   </div>
 </aside>
+<style>
+  .nav-extra .inner {
+    --bevelInset: 10;
+    --bevelFill: var(--c-bg);
+    --bevelStroke: gray;
+    --bevelCorners: bl,br;
+    background-image: paint(bevel);
+  }
+  .nav-extra .inner>div>div {
+    --bevelInset: 5;
+    --bevelFill: #222;
+    --bevelStroke: #333;
+    --bevelCorners: tl,br;
+    background-image: paint(bevel);
+  }
+</style>
 
 <div class="hero">
-  <span>We help businesses<br/><span>scale</span>.</span>
+  <img src="/img/spread.svg"/>
+  <p>We help businesses<br/><span>scale</span>.</p>
 </div>
 
 <script>
+  // Update hero property to re-render
   let e = document.querySelector(".hero");
+  let start = Date.now();
   let repeat = () => {
-    e.style = `--time: ${Date.now().toString()}`;
+    if (e != null) {
+      e.style = `--time: ${(Date.now() - start).toString()}`;
+    } else {
+      e = document.querySelector(".hero");
+    }
     requestAnimationFrame(repeat);
   };
   requestAnimationFrame(repeat);
@@ -40,26 +68,52 @@ layout: ./main.njk
   Staff members
 </div>
 
+<script>
+  // let extra = document.querySelector(".nav-extra");
+  // setTimeout(() => {
+  //   extra.classList.add("visible")
+  // }, 1000)
+</script>
+
 <style>
   .hero {
     display: grid;
-    justify-content: center;
-    align-content: center;
+    grid-template-columns: 0.3fr 0.7fr;
+    place-items: center;
+    gap: 2rem;
     width: 100vw;
     width: 100svw;
-    height: 60vh;
-    height: 60svh;
+    padding: 2rem;
 
     background-image: paint(grid);
   }
 
-  .hero span {
+  .hero img {
+    width: 30vw;
+    max-height: 70vh;
+    margin: 4rem 2rem;
+  }
+
+  .hero p {
     width: max-content;
+    height: min-content;
+    margin: auto 0;
     font-size: 3rem;
     font-family: var(--fnt-accent);
   }
 
-  .hero span span {
+  .hero p span {
     font-size: 5rem;
+  }
+
+  @media screen and (width <= 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+
+    .hero img {
+      margin: 0;
+      width: 90vw;
+    }
   }
 </style>

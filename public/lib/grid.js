@@ -19,6 +19,17 @@ function xyHash(posX, posY) {
 
 /* global registerPaint */
 
+/**
+ * @typedef {CanvasRenderingContext2D} PaintRenderingContext2D
+ * 
+ * @typedef {object} PaintSize
+ * @property {number} width
+ * @property {number} height
+ * 
+ * @typedef {object} PaintProperties
+ * @property {(key: string) => string | undefined} get
+*/
+
 registerPaint('grid', class {
 	static get contextOptions() {
 		return {
@@ -38,7 +49,7 @@ registerPaint('grid', class {
     /**
      * @param {PaintRenderingContext2D} ctx 
      * @param {PaintSize} geom 
-     * @param {Object.<any, any>} properties 
+     * @param {PaintProperties} properties 
      */
     paint(ctx, geom, properties) {
         let size = 70;
@@ -49,7 +60,7 @@ registerPaint('grid', class {
 
         function drawSingle(ctx, posX, posY, color, activity) {
             let strokeColor = color;
-            let strokeWidth = 1;
+            let strokeWidth = 2;
             let halfStroke = strokeWidth / 2;
             let xMin = padX + posX * size + halfStroke;
             let xMax = padX + posX * size + size - halfStroke;
@@ -67,18 +78,20 @@ registerPaint('grid', class {
             ctx.lineTo(xMin, yMin);
             ctx.lineTo(xMin + size * outset, yMin);
             ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(xMax - size * outset, yMin);
-            ctx.lineTo(xMax, yMin);
-            ctx.lineTo(xMax, yMin + size * outset);
-            ctx.stroke();
             ctx.moveTo(xMax, yMax - size * outset);
             ctx.lineTo(xMax, yMax);
             ctx.lineTo(xMax - size * outset, yMax);
             ctx.stroke();
-            ctx.moveTo(xMin + size * outset, yMax);
-            ctx.lineTo(xMin, yMax);
-            ctx.lineTo(xMin, yMax - size * outset);
+
+            ctx.globalAlpha = 0.3;
+            ctx.lineWidth = strokeWidth / 2.0;
+
+            ctx.beginPath();
+            ctx.moveTo(xMin - halfStroke, yMin - halfStroke);
+            ctx.lineTo(xMax + strokeWidth, yMin - halfStroke);
+            ctx.lineTo(xMax + strokeWidth, yMax + strokeWidth);
+            ctx.lineTo(xMin - halfStroke, yMax + strokeWidth);
+            ctx.lineTo(xMin - halfStroke, yMin - halfStroke);
             ctx.stroke();
 
             ctx.globalAlpha = activity * 0.2;
@@ -98,10 +111,8 @@ registerPaint('grid', class {
                 let hash = xyHash(w, h);
                 let duration = hash % 5000;
                 let value = (Math.sin((time / 1000 / speed) % duration) + 1.0) / 2.0
-                console.log(hash, value)
                 drawSingle(ctx, w, h, strokeColor, value);
             }
         }
     }
 })
-

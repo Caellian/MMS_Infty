@@ -10,19 +10,23 @@
   </head>
   <body>
     <nav>
-        <h1><a href="/"><img src="/icon.svg" /> Infty</a></h1>
+        <h1><a href="/"><img src="/logo.svg" /></a></h1>
     
         <div class="links">
             <a href="/">Home</a>
             <a href="/services">Services</a>
             <a href="/clanstvo">Učlani se</a>
-            <a href="/about">O Nama</a>
+            <a href="/about">About Us</a>
         </div>
     </nav>
     
     <main>
       {{ content | safe }}
     </main>
+
+    <footer>
+      Copyright &copy; 2023 Tin Švagelj. All rights reserved.
+    </footer>
 
     <!-- Polyfill za: https://drafts.css-houdini.org/css-paint-api/ -->
     <script src="/polyfill/houdini.js"></script>

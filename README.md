@@ -1,9 +1,11 @@
 # Build
 
 Za igraditi stranicu je potrebno pokrenuti
+
 ```
 npm run build
 ```
+
 te prenijeti generirane datoteke iz `_site` direktorija na poslužitelj.
 
 # Framework
@@ -21,3 +23,12 @@ namjenu zbog svoje jednostavnosti.
 Kao izvor fontova je korišten [Google Fonts](fonts.google.com), fontovi su
 preuzeti te je zadržan samo subset glifova koji se nalaze na web sjedištu kako
 bi se dodatno smanjila veličina woff datoteke.
+
+# Gotovi sadržaj
+
+Sljedeći sadržaj je preuzet s interneta:
+
+- `public/polyfill`
+  - polyfill za IE11+ i browsere koji ne koriste blink browser engine kako bi [houdini](https://github.com/WICG/css-parser-api) radio svugdje.
+  - **polyfill daje error** prilikom učitavanja stranice, no radi jer je animacija pozadine hero sectiona radi
+- mapa USa, dodane su pobojane točke i linije (nakon komentara u SVGu).

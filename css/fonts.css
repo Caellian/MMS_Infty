@@ -1,30 +1,30 @@
 @font-face {
   font-family: "Anta";
-  src: url("/fonts/Anta-Regular.woff") format("woff");
+  src: url("./fonts/Anta-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Lato";
-  src: url("/fonts/Lato-Regular.woff") format("woff");
+  src: url("./fonts/Lato-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Lato";
-  src: url("/fonts/Lato-Bold.woff") format("woff");
+  src: url("./fonts/Lato-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "Lato";
-  src: url("/fonts/Lato-Italic.woff") format("woff");
+  src: url("./fonts/Lato-Italic.woff") format("woff");
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: "Lato";
-  src: url("/fonts/Lato-BoldItalic.woff") format("woff");
+  src: url("./fonts/Lato-BoldItalic.woff") format("woff");
   font-weight: bold;
   font-style: italic;
 }

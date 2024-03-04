@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/MMS_Infty/icon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infty - Tin Švagelj</title>
+    
+    <link rel="stylesheet" href="/MMS_Infty/css/global.css">
+  </head>
+  <body>
+    <nav>
+        <h1><a href="/MMS_Infty/"><img src="/MMS_Infty/logo.svg"></a></h1>
+    
+        <div class="links">
+            <a href="/MMS_Infty/">Home</a>
+            <a href="/MMS_Infty/services">Services</a>
+            <a href="/MMS_Infty/contact">Contact</a>
+            <a href="/MMS_Infty/about">About Us</a>
+        </div>
+    </nav>
+    
+    <main>
+      
+<h2>Contact</h2>
+
+You can contact us at <a href="mailto:contract@infty.com">contract@infty.com</a>
+
+    </main>
+
+    <footer>
+      Copyright &copy; 2023 Tin Švagelj. All rights reserved.
+    </footer>
+
+    <!-- Polyfill za: https://drafts.css-houdini.org/css-paint-api/ -->
+    <script src="/MMS_Infty/polyfill/houdini.js"></script>
+    <script src="/MMS_Infty/polyfill/transpilerLite.js"></script>
+		<script>
+      // Inject a tiny tranpiler to make IE11+ behave nicely:
+      try {
+        eval('class F {}');
+      }
+      catch(e) {
+        CSS.paintWorklet.transpile = window.transpilerLite;
+      }
+    </script>
+    
+    <!-- Houdini pozadine -->
+    <script src="/MMS_Infty/lib/bg.js"></script>
+  </body>
+</html>

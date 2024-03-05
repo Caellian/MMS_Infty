@@ -41,15 +41,19 @@ a {
   outline: none;
 }
 a:hover {
-  color: var(--c-secondary);
+  color: #cdcdcd;
 }
 a:active, a:focus {
-  color: var(--c-secondary);
+  color: #a9a9a9;
 }
 
 img {
   margin: 2ch;
   object-fit: contain;
+}
+
+main {
+  padding: var(--pad-small);
 }
 
 nav {

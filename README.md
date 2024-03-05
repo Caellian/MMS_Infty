@@ -32,3 +32,7 @@ Sljedeći sadržaj je preuzet s interneta:
   - polyfill za IE11+ i browsere koji ne koriste blink browser engine kako bi [houdini](https://github.com/WICG/css-parser-api) radio svugdje.
   - **polyfill daje error** prilikom učitavanja stranice, no radi jer je animacija pozadine hero sectiona radi
 - mapa USa, dodane su pobojane točke i linije (nakon komentara u SVGu).
+
+# Licenca
+
+Sadržaj je u vlasništvu Sveučilišta u Rijeci

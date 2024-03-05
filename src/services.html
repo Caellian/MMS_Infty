@@ -2,12 +2,6 @@
 layout: ./main.njk
 ---
 
-<video width="1280" height="720" controls class="promo">
-    <source src="/vid/promo.webm" type="video/webm">
-    <source src="/vid/promo.mp4" type="video/mp4">
-    <p>Your browser cannot play the provided video file.</p>
-</video>
-
 <h2>Consulting</h2>
 <div class="left-right">
     <img src="/img/consulting.jpg" />
@@ -60,11 +54,6 @@ layout: ./main.njk
 </ul>
 
 <style>
-.promo {
-    width: 80vw;
-    margin: 2rem auto;
-}
-
 .left-right {
     display: flex;
     padding: 1rem;
@@ -80,13 +69,24 @@ layout: ./main.njk
     flex-grow: 1;
 }
 
-@media screen and (width <= 600) {
+.certificates {
+    margin: 3rem;
+}
+
+@media screen and (width <= 600px) {
     .left-right {
         flex-direction: column;
     }
-}
+    .left-right img {
+        order: 0;
+        width: 100%;
+    }
+    .left-right p {
+        order: 1;
+    }
 
-.certificates {
-    margin: 3rem;
+    .certificates {
+        margin: 1rem;
+    }
 }
 </style>

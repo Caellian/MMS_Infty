@@ -41,6 +41,14 @@ layout: ./main.njk
 
 <p>We offer a range of services including business strategy, operational efficiency, and digital transformation.</p>
 
+<div class="promo">
+  <video controls>
+      <source src="/vid/promo.webm" type="video/webm">
+      <source src="/vid/promo.mp4" type="video/mp4">
+      <p>Your browser cannot play the provided video file.</p>
+  </video>
+</div>
+
 <style>
   .hero {
     display: grid;
@@ -80,6 +88,20 @@ layout: ./main.njk
     .hero img {
       margin: 0;
       width: 90vw;
+    }
+  }
+
+  .promo {
+    width: 80vw;
+    margin: 2rem auto;
+  }
+  .promo video {
+    width: 100%;
+  }
+  
+  @media screen and (width <= 600px) {
+    .promo {
+        width: 95vw;
     }
   }
 </style>

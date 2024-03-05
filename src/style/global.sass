@@ -37,6 +37,21 @@ h1,h2,h3,h4,h5,h6
 p
   max-width: 120ch
   text-align: justify
+  margin-bottom: 1ch
+
+a
+  color: white
+  outline: none
+
+  &:hover
+    color: var(--c-secondary)
+  &:active,
+  &:focus
+    color: var(--c-secondary)
+
+img
+  margin: 2ch
+  object-fit: contain
 
 nav
   display: flex
@@ -55,6 +70,7 @@ nav
 
   h1
     font-family: var(--fnt-accent)
+    margin: 0
 
     a
       text-decoration: none
@@ -65,10 +81,12 @@ nav
 
       img
         height: calc(var(--nav-height) * 0.6)
+        margin: 0
 
   .links
     display: flex
     gap: 0.8rem
+
     a
       display: inline-block
       color: white

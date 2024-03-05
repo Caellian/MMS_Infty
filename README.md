@@ -35,4 +35,4 @@ Sljedeći sadržaj je preuzet s interneta:
 
 # Licenca
 
-Sadržaj je u vlasništvu Sveučilišta u Rijeci
+Sadržaj je u vlasništvu [Fakulteta Informatike i Digitalnih Tehnologija](https://inf.uniri.hr).

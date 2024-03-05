@@ -2,8 +2,11 @@
 layout: ./main.njk
 ---
 
-<h2>About Us</h2>
+<p style="color: red; font-weight: 1000; font-size: 2rem;">
+Infty is not a real company. This is a university project for multimedia class.
+</p>
 
+<h2>About Us</h2>
 
 <p>We are a global tech company with a local heart. Founded in Los Angeles, we have
 grown into a diverse team of over 60 professionals working remotely from all
@@ -31,27 +34,23 @@ you're gaining a partner committed to your success.</p>
 <p style="font-size: 1.2rem;">Welcome to Infty! Let's build the future together.</p>
 
 <style>
-    @media screen and (width > 500px) {  
-        .building {
-            float: left;
-        }
-
-        .working {
-            float: right;
-        }
-    }
-    @media screen and (width <= 500px) {  
-        .building {
-            margin: 2ch auto;
-        }
-
-        .working {
-            width: 100%;
-            margin: 2ch auto;
-        }
+@media screen and (width > 500px) {  
+    .building {
+        float: left;
     }
 
-    main {
-        margin: 1rem;
+    .working {
+        float: right;
     }
+}
+@media screen and (width <= 500px) {  
+    .building {
+        margin: 2ch auto;
+    }
+
+    .working {
+        width: 100%;
+        margin: 2ch auto;
+    }
+}
 </style>

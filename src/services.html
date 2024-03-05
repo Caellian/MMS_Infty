@@ -41,6 +41,8 @@ layout: ./main.njk
 
 <h2>Available Certificates</h2>
 
+<p>We can help you get your business certified with:</p>
+
 <ul class="certificates">
     <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 20000-1:2018:</a></b> This standard is for Information Technology Service Management.</li>
     <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 23894:2023:</a></b> This standard provides guidance on risk management for Artificial Intelligence.</li>
@@ -58,6 +60,11 @@ layout: ./main.njk
     display: flex;
     padding: 1rem;
     gap: 2rem;
+    margin: 1rem;
+    --bevelCorners: tl br;
+    --bevelFill: #222;
+    --bevelStroke: var(--c-primary);
+    background-image: paint(bevel);
 }
 
 .left-right img {
@@ -71,6 +78,11 @@ layout: ./main.njk
 
 .certificates {
     margin: 3rem;
+    list-style: none;
+}
+
+.certificates li {
+    margin-bottom: 1ch;
 }
 
 @media screen and (width <= 600px) {
@@ -79,7 +91,8 @@ layout: ./main.njk
     }
     .left-right img {
         order: 0;
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
     }
     .left-right p {
         order: 1;

@@ -114,7 +114,6 @@ registerPaint('grid', class {
         for (let h = 0; h < (geom.height / size) + 1; h ++) {
             for (let w = 0; w < (geom.width / size) + 1; w++) {
                 let hash = xyHash(w, h);
-                console.log(hash);
                 let duration = hash % 5000;
                 let value = (Math.sin((time / 1000 / speed) % duration) + 1.0) / 2.0
                 drawSingle(ctx, w, h, strokeColor, value);

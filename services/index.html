@@ -22,11 +22,13 @@
     
     <main>
       
-<video width="1280" height="720" controls="" class="promo">
-    <source src="/MMS_Infty/vid/promo.webm" type="video/webm">
-    <source src="/MMS_Infty/vid/promo.mp4" type="video/mp4">
-    <p>Your browser cannot play the provided video file.</p>
-</video>
+<div class="promo">
+    <video controls="">
+        <source src="/MMS_Infty/vid/promo.webm" type="video/webm">
+        <source src="/MMS_Infty/vid/promo.mp4" type="video/mp4">
+        <p>Your browser cannot play the provided video file.</p>
+    </video>
+</div>
 
 <h2>Consulting</h2>
 <div class="left-right">
@@ -84,6 +86,9 @@
     width: 80vw;
     margin: 2rem auto;
 }
+.promo video {
+    width: 100%;
+}
 
 .left-right {
     display: flex;
@@ -100,14 +105,28 @@
     flex-grow: 1;
 }
 
-@media screen and (width <= 600) {
+.certificates {
+    margin: 3rem;
+}
+
+@media screen and (width <= 600px) {
+    .promo {
+        width: 95vw;
+    }
     .left-right {
         flex-direction: column;
     }
-}
+    .left-right img {
+        order: 0;
+        width: 100%;
+    }
+    .left-right p {
+        order: 1;
+    }
 
-.certificates {
-    margin: 3rem;
+    .certificates {
+        margin: 1rem;
+    }
 }
 </style>
     </main>

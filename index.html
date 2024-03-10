@@ -19,13 +19,13 @@
             <a href="/MMS_Infty/about">About Us</a>
         </div>
     </nav>
+
+    <noscript>
+      <p>This page won't behave nicely without JavaScript enabled. Please, be reasonable and turn it on.</p>
+    </noscript>
     
     <main>
       
-<noscript>
-  <p>This page doesn't work the best without JS.</p>
-</noscript>
-
 <div class="hero">
   <img src="/MMS_Infty/img/spread.svg">
   <p>We help businesses<br><span>scale</span>.</p>
@@ -35,15 +35,33 @@
   // Update hero property to re-render
   let e = document.querySelector(".hero");
   let start = Date.now();
-  let repeat = () => {
+  let lastCursorPos = null;
+  function updateHeroStyles() {
     if (e != null) {
-      e.style = `--time: ${(Date.now() - start).toString()}`;
+      let style = `--time: ${(Date.now() - start).toString()};`;
+      if (lastCursorPos != null) {
+        style += `--cursor-x: ${lastCursorPos[0]};--cursor-y: ${lastCursorPos[1]};`
+      }
+      e.setAttribute("style", style);
     } else {
       e = document.querySelector(".hero");
     }
+  }
+
+  let repeat = () => {
+    updateHeroStyles();
     requestAnimationFrame(repeat);
   };
   requestAnimationFrame(repeat);
+
+  e.addEventListener("mousemove", (ev) => {
+    let heroBounds = e.getBoundingClientRect();
+    heroBounds = [heroBounds.x + window.scrollX, heroBounds.y + window.scrollY];
+    lastCursorPos = [ev.pageX - heroBounds[0], ev.pageY - heroBounds[1]];
+  });
+  e.addEventListener("mouseleave", () => {
+    lastCursorPos = null;
+  })
 </script>
 
 <h2>Why Pick Us</h2>
@@ -81,7 +99,7 @@
       }
     }
   }, {
-    threshold: 0.7,
+    threshold: 0.4,
   });
   observer.observe(conquests);
 </script>
@@ -102,12 +120,15 @@
     grid-template-columns: 0.3fr 0.7fr;
     place-items: center;
     gap: 2rem;
-    max-width: 100vw;
-    max-width: 100svw;
+    width: 100vw;
+    width: 100svw;
     padding: 2rem;
-    margin: 0 calc(var(--pad-small) * -1);
+    margin-left: calc(var(--mainMargin) * -1);
 
     background-image: paint(grid);
+
+    user-select: none;
+    cursor: crosshair;
   }
 
   .hero img {
@@ -138,10 +159,14 @@
       margin-left: -5rem;
       width: 100%;
     }
+
+    .hero p {
+      font-size: calc(100vw / 12);
+    }
   }
 
   .promo {
-    width: 80vw;
+    width: 100%;
     margin: 2rem auto;
   }
   .promo video {
@@ -193,23 +218,52 @@
   .conquests li:nth-child(2n) {
     --bevelCorners: bl tr;
   }
-
-  .conquests.active li:nth-child(2n + 1) {
-    --bevelCorners: tl br;
-    margin-bottom: 5.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .conquests.active li:nth-child(2n) {
-    --bevelCorners: bl tr;
-    margin-top: 5.5rem;
-    margin-bottom: 0.5rem;
-  }
   
   .conquests li .logo {
     width: 200px;
     max-width: 100%;
     margin: 1rem auto;
+  }
+
+  @media screen and (width > 900px) {
+    .conquests.active li:nth-child(2n + 1) {
+      margin-bottom: 5.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .conquests.active li:nth-child(2n) {
+      margin-top: 5.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media screen and (width <= 900px) {
+    .conquests {
+      flex-direction: column;
+      width: max-content;
+      max-width: 100vw;
+      max-width: 100svw;
+      margin: 0.5rem auto;
+      overflow: hidden;
+    }
+
+    .conquests li {
+      margin: 0 3rem;
+    }
+
+    .conquests li:nth-child(2n + 1) {
+      margin-left: 5.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .conquests li:nth-child(2n) {
+      margin-right: 5.5rem;
+      margin-left: 0.5rem;
+    }
+
+    .conquests.active li {
+      margin: 0 3rem;
+    }
   }
 </style>
 
@@ -219,19 +273,27 @@
       Copyright &copy; 2023 Tin Švagelj. All rights reserved.
     </footer>
 
-    <!-- Polyfill za: https://drafts.css-houdini.org/css-paint-api/ -->
-    <script src="/MMS_Infty/polyfill/houdini.js"></script>
-    <script src="/MMS_Infty/polyfill/transpilerLite.js"></script>
-		<script>
-      // Inject a tiny tranpiler to make IE11+ behave nicely:
-      try {
-        eval('class F {}');
-      }
-      catch(e) {
-        CSS.paintWorklet.transpile = window.transpilerLite;
+    <script>
+      // main ima auto margine na stranama, i za content koji treba izlaziti iz
+      // margine je korisno imati mjeru tih margina.
+
+      let main = document.querySelector("main");
+      if (main) {
+        // za praćenje promjene u veličini koristim ne standardan
+        // ResizeObserver, no podržan je u svim browserima osim IE
+        let mainResizeWatch = new ResizeObserver((entries) => {
+          let entry = entries.length > 0 && entries[0];
+          if (!entry) {
+            return;
+          }
+          let mainW = entry.contentRect.width;
+          main.style = `--mainMargin: ${(window.innerWidth - mainW) / 2}px`;
+        })
+        mainResizeWatch.observe(main);
+        main.style = `--mainMargin: ${(window.innerWidth - main.getBoundingClientRect().width) / 2}px`;
       }
     </script>
-    
+
     <!-- Houdini pozadine -->
     <script src="/MMS_Infty/lib/bg.js"></script>
   </body>

@@ -54,6 +54,8 @@ img {
 
 main {
   padding: var(--pad-small);
+  max-width: 120ch;
+  margin: 0 auto;
 }
 
 nav {

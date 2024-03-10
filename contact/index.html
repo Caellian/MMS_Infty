@@ -19,6 +19,10 @@
             <a href="/MMS_Infty/about">About Us</a>
         </div>
     </nav>
+
+    <noscript>
+      <p>This page won't behave nicely without JavaScript enabled. Please, be reasonable and turn it on.</p>
+    </noscript>
     
     <main>
       
@@ -109,19 +113,27 @@ You can reach us by phone during our business hours (Monday - Friday, 9 AM - 5 P
       Copyright &copy; 2023 Tin Švagelj. All rights reserved.
     </footer>
 
-    <!-- Polyfill za: https://drafts.css-houdini.org/css-paint-api/ -->
-    <script src="/MMS_Infty/polyfill/houdini.js"></script>
-    <script src="/MMS_Infty/polyfill/transpilerLite.js"></script>
-		<script>
-      // Inject a tiny tranpiler to make IE11+ behave nicely:
-      try {
-        eval('class F {}');
-      }
-      catch(e) {
-        CSS.paintWorklet.transpile = window.transpilerLite;
+    <script>
+      // main ima auto margine na stranama, i za content koji treba izlaziti iz
+      // margine je korisno imati mjeru tih margina.
+
+      let main = document.querySelector("main");
+      if (main) {
+        // za praćenje promjene u veličini koristim ne standardan
+        // ResizeObserver, no podržan je u svim browserima osim IE
+        let mainResizeWatch = new ResizeObserver((entries) => {
+          let entry = entries.length > 0 && entries[0];
+          if (!entry) {
+            return;
+          }
+          let mainW = entry.contentRect.width;
+          main.style = `--mainMargin: ${(window.innerWidth - mainW) / 2}px`;
+        })
+        mainResizeWatch.observe(main);
+        main.style = `--mainMargin: ${(window.innerWidth - main.getBoundingClientRect().width) / 2}px`;
       }
     </script>
-    
+
     <!-- Houdini pozadine -->
     <script src="/MMS_Infty/lib/bg.js"></script>
   </body>

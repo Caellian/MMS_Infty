@@ -33,3 +33,12 @@ async function run() {
 }
 
 run();
+
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1877751
+// Promjena DOMa kako bi Firefox nacrtao pozadine
+setTimeout(() => {
+    let manuallyInvalidate = document.querySelectorAll(".bevel-bg");
+    for (const el of manuallyInvalidate) {
+        el.setAttribute("style", "");
+    }
+}, 100);

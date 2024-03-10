@@ -42,11 +42,11 @@ registerPaint('bevel', class {
      * @param {PaintProperties} properties 
      */
     paint(ctx, geom, properties) {
-        let fill = properties.get("--bevelFill").toString() || "#000";
-        let stroke = properties.get("--bevelStroke").toString() || "white";
-        let strokeWidth = Number.parseFloat(properties.get("--bevelStrokeWidth").toString()) || 2;
-        let inset = Number.parseFloat(properties.get("--bevelInset").toString()) || 10;
-        let corners = properties.get("--bevelCorners").toString() || "tl tr bl br";
+        let fill = properties.get("--bevelFill")?.toString() || "#000";
+        let stroke = properties.get("--bevelStroke")?.toString() || "white";
+        let strokeWidth = Number.parseFloat(properties.get("--bevelStrokeWidth")?.toString()) || 2;
+        let inset = Number.parseFloat(properties.get("--bevelInset")?.toString()) || 10;
+        let corners = properties.get("--bevelCorners")?.toString() || "tl tr bl br";
          
         corners = corners.split(" ");
 

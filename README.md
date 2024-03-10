@@ -26,7 +26,12 @@ namjenu zbog svoje jednostavnosti.
 
 Kao izvor fontova je korišten [Google Fonts](fonts.google.com), fontovi su
 preuzeti te je zadržan samo subset glifova koji se nalaze na web sjedištu kako
-bi se dodatno smanjila veličina woff datoteke.
+bi se dodatno smanjila veličina woff datoteke ([postupak](./doc/subset.md)).
+
+## Tehnologija i dodatni elementi
+
+S obzirom da je završni ispit fokusiran na multimediju i prezentaciju, kao
+dodatna tehnologija je odabrano korištenje [CSS Houdini Paint APIa](./doc/houdini.md).
 
 ## Licenca
 

@@ -19,16 +19,8 @@ const CORNERS = Object.freeze({
 registerPaint('bevel', class {
 	static get contextOptions() {
 		return {
-
-			/** Proposed option to force using 1:1 pixel mapping instead of CSS Pixels. */
-			// nativePixels: true,
-
-			/** Proposed option to disable the default upscaling via high resolution backing canvas.
-			 *
-			 *  Note: if animating and crisp lines are less important, disabling scaling
-			 *  improves polyfill performance, since it reduces the canvas size by 75%.
-			 */
-			scaling: false
+			scaling: false,
+            alpha: false, // true crashes some browsers on some builds
 		};
 	}
 
@@ -44,8 +36,8 @@ registerPaint('bevel', class {
     paint(ctx, geom, properties) {
         let fill = properties.get("--bevelFill")?.toString() || "#000";
         let stroke = properties.get("--bevelStroke")?.toString() || "white";
-        let strokeWidth = Number.parseFloat(properties.get("--bevelStrokeWidth")?.toString()) || 2;
-        let inset = Number.parseFloat(properties.get("--bevelInset")?.toString()) || 10;
+        let strokeWidth = Number.parseFloat(properties.get("--bevelStrokeWidth")?.toString() || "2");
+        let inset = Number.parseFloat(properties.get("--bevelInset")?.toString() || "10");
         let corners = properties.get("--bevelCorners")?.toString() || "tl tr bl br";
          
         corners = corners.split(" ");

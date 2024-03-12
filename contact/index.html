@@ -15,14 +15,14 @@
   
       <div class="links">
           <a href="/MMS_Infty/" data-name="home">Home</a>
-          <a href="/MMS_Infty/services" data-name="services">Services</a>
+          <a href="/MMS_Infty/services/" data-name="services">Services</a>
           <div class="sublinks" data-for="services">
-              <a href="/MMS_Infty/consultin">Consulting</a>
-              <a href="/MMS_Infty/contracting">Contracting</a>
-              <a href="/MMS_Infty/certification">Certification</a>
+              <a href="/MMS_Infty/consulting/">Consulting</a>
+              <a href="/MMS_Infty/contracting/">Contracting</a>
+              <a href="/MMS_Infty/certification/">Certification</a>
           </div>
-          <a href="/MMS_Infty/contact" data-name="contact">Contact</a>
-          <a href="/MMS_Infty/about" data-name="about">About Us</a>
+          <a href="/MMS_Infty/contact/" data-name="contact">Contact</a>
+          <a href="/MMS_Infty/about/" data-name="about">About Us</a>
       </div>
       <button class="menu">
           <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg">
@@ -42,11 +42,9 @@
       
 <h1>Contact Us</h1>
 
-We're here to provide you with more information, answer any questions you may have, and create effective solutions for your IT needs.
-
 <h2>Our Address</h2>
 
-<p style="text-align: center;">
+<p style="text-align:center;width:max-content;margin:0 5rem;">
 Infty Co.<br>
 14711 S ATLANTIC AVE<br>
 COMPTON CA 90221-3065
@@ -64,10 +62,14 @@ COMPTON CA 90221-3065
     <a href="mailto:support@infty.com">support@infty.com</a>
 </p>
 
+<div class="spacer"></div>
+
 <h2>Call Us</h2>
 
 You can reach us by phone during our business hours (Monday - Friday, 9 AM - 5 PM):<br>
 <a href="tel:+11234567890">+1 (123) 456-7890</a>
+
+<div class="spacer"></div>
 
 <h2>Social Media</h2>
 
@@ -91,19 +93,21 @@ You can reach us by phone during our business hours (Monday - Friday, 9 AM - 5 P
     </li>
 </ul>
 
-<p style="text-align: center;margin-top: 2rem; font-size: 1.2rem;">We look forward to hearing from you!</p>
+<div class="spacer"></div>
+
+<p class="statement">We look forward to hearing from you!</p>
 
 <style>
 .media-icons {
     list-style: none;
     display: flex;
     margin: 0 auto;
+    margin-top: 2rem;
     width: min-content;
     gap: 1rem;
     padding: 1rem;
 
-    --bevelCorners: tl tr;
-    --bevelFill: #222;
+    --bevelFill: var(--c-on-bg);
     --bevelStroke: var(--c-border);
 }
 

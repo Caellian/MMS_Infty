@@ -2,52 +2,150 @@
 layout: ./main.njk
 ---
 
-<h2>About Us</h2>
+<h1>Certification</h1>
 
-<p>We are a global tech company with a local heart. Founded in Los Angeles, we have
-grown into a diverse team of over 60 professionals working remotely from all
-corners of the globe.</p>
+<p>
+    At Infty, we believe in empowering professionals through certification. Our
+    commitment to excellence drives us to offer top-notch certification programs
+    that enhance your skills and open doors to new opportunities.
+</p>
 
-<img class="building" height="300px" src="/img/building.jpg" /> 
+<h2>Why Choose Infty Certification?</h2>
 
-<p>Our mission is to provide safe, reliable, and compliant software solutions. We
-specialize in standards compliance and best practices, ensuring our products not
-only meet but exceed industry expectations. Our commitment to safety and quality
-has earned us the trust of some of the biggest players in the tech industry,
-including Microsoft.</p>
+<ul>
+    <li>
+        <strong>Industry Recognition:</strong> Our certifications are recognized globally, giving
+        you a competitive edge in the job market.
+    </li>
+    <li>
+        <strong>Quality Assurance:</strong> We adhere to best practices in certification
+        development, ensuring validity, reliability, and fairness.
+    </li>
+    <li>
+        <strong>ISO Accreditation:</strong> Infty certifications align with
+        <code>ISO 9001</code> and <code>ISO/ANSI 17024</code> standards,
+        guaranteeing quality and credibility1.
+    </li>
+</ul>
 
-<p>Despite our global reach, we maintain the warmth and personalized service of a
-smaller company. At Infty, every client is unique, and every project receives
-the individual attention it deserves.</p>
+<h2>Available Certifications</h2>
 
-<img class="working" width="300px" src="/img/working.jpg">
+<div class="all-certs">
+    <div class="bevel-bg cert">
+        <h3>Project Management Professional (PMP)&reg;</h3>
+        
+        <ul>
+            <li>
+                The PMP&reg; certification is for project managers who want to
+                demonstrate their expertise in leading successful projects.
+            </li>
+            <li>
+                Domains covered: People, Process, Business Environment.
+            </li>
+            <li>
+                Prepare with our comprehensive study materials and expert guidance.
+            </li>
+        </ul>
+    </div>
 
-<p>We are more than just a tech company. We are a community of innovators,
-thinkers, and problem-solvers dedicated to helping our clients navigate the
-digital landscape. With Infty, you're not just getting a service provider;
-you're gaining a partner committed to your success.</p>
+    <div class="bevel-bg cert">
+        <h3>Certified Associate in Project Management (CAPM)&reg;</h3>
 
-<p style="font-size: 1.2rem;">Welcome to Infty! Let's build the future together.</p>
+        <ul>
+            <li>Ideal for aspiring project managers or team members.</li>
+            <li>Covers foundational project management concepts.</li>
+            <li>Kickstart your career with CAPM&reg; certification.</li>
+        </ul>
+    </div>
+
+    <div class="bevel-bg cert">
+        <h3>Certified Information Systems Auditor (CISA)&reg;</h3>
+
+        <ul>
+            <li>For professionals in IT audit, control, and security.</li>
+            <li>Domains include Professional Conduct, Risk Management, and more.</li>
+            <li>Prove your competence with CISA&reg; certification.</li>
+        </ul>
+    </div>
+
+    <div class="bevel-bg cert">
+        <h3>Certified ScrumMaster (CSM)&reg;</h3>
+        
+        <ul>
+            <li>Designed for individuals interested in agile project management.</li>
+            <li>Covers Scrum framework, roles, ceremonies, and artifacts.</li>
+            <li>Elevate your career with CSM&reg; certification.</li>
+        </ul>
+    </div>
+
+    <div class="bevel-bg cert">
+        <h3>Certified Ethical Hacker (CEH)&reg;</h3>
+        
+        <ul>
+            <li>Tailored for cybersecurity professionals and ethical hackers.</li>
+            <li>Domains include network security, penetration testing, and vulnerability assessment.</li>
+            <li>Validate your skills with CEH&reg; certification.</li>
+        </ul>
+    </div>
+
+    <div class="bevel-bg cert">
+        <h3>Certified Data Scientist (CDS)&reg;</h3>
+        
+        <ul>
+            <li>Geared towards data scientists and analysts.</li>
+            <li>Covers statistical modeling, machine learning, and data visualization.</li>
+            <li>Boost your credentials with CDS&reg; certification.</li>
+        </ul>
+    </div>
+
+</div>
+
+<h2>Getting Certified: What You Need to Know</h2>
+
+<ul>
+    <li>
+        <strong>Eligibility:</strong> Check the prerequisites for each
+        certification.
+    </li>
+    <li>
+        <strong>Preparation:</strong> Study the content outline and recommended
+        resources.
+    </li>
+    <li>
+        <strong>Exam:</strong> Our exams assess real-world skills and knowledge.
+    </li>
+</ul>
+
+<p class="statement">
+    Ready to take your career to the next level? <a href="/contact/">Contact us today!</a>
+</p>
 
 <style>
-@media screen and (width > 500px) {  
-    .building {
-        float: left;
-    }
+.all-certs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1ch;
+    justify-items: center;
+}
 
-    .working {
-        float: right;
+@media screen and (width <= 650px) {
+    .all-certs {
+        grid-template-columns: 1fr;
     }
 }
-@media screen and (width <= 500px) {  
-    .building {
-        width: 100%;
-        margin: 2ch auto;
-    }
 
-    .working {
-        width: 100%;
-        margin: 2ch auto;
-    }
+.cert {
+    padding-right: 1ch;
+    padding-bottom: 1ch;
+
+    max-width: 50ch;
+
+    --bevelCorners: tl br;
+    --bevelFill: var(--c-on-bg);
+    --bevelStroke: var(--c-primary);
+}
+
+.bevel-bg {
+    background-image: paint(bevel);
 }
 </style>

@@ -54,8 +54,12 @@ layout: ./main.njk
     gap: 2rem;
     margin: 1rem;
     --bevelCorners: tl br;
-    --bevelFill: #222;
+    --bevelFill: var(--c-on-bg);
     --bevelStroke: var(--c-primary);
+}
+
+.bevel-bg {
+    background-image: paint(bevel);
 }
 
 .left-right img {
@@ -102,9 +106,5 @@ layout: ./main.njk
     .certificates {
         margin: 1rem;
     }
-}
-
-.bevel-bg {
-    background-image: paint(bevel);
 }
 </style>

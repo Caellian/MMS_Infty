@@ -3,7 +3,7 @@ layout: ./main.njk
 ---
 
 <div class="hero">
-  <img src="/img/spread.svg"/>
+  {% svg "img/spread" %}
   <p>We help businesses<br/><span>scale</span>.</p>
 </div>
 
@@ -107,10 +107,26 @@ layout: ./main.njk
     cursor: crosshair;
   }
 
-  .hero img {
+  .hero svg {
     width: 30vw;
     max-height: 70vh;
     margin: 4rem 2rem;
+  }
+
+  .hero svg .connections path {
+    animation-name: flow-lines;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  .hero svg .connections path.reverse {
+    animation-direction: reverse;
+  }
+
+  @keyframes flow-lines {
+    0%   {stroke-dashoffset: 0;}
+    100% {stroke-dashoffset: 24;}
   }
 
   .hero p {
@@ -130,7 +146,7 @@ layout: ./main.njk
       grid-template-columns: 1fr;
     }
 
-    .hero img {
+    .hero svg {
       margin: 0;
       margin-left: -5rem;
       width: 100%;

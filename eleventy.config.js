@@ -1,4 +1,5 @@
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+const fs = require('fs');
 
 /**
  * @param {import("@11ty/eleventy").UserConfig} eleventyConfig
@@ -14,6 +15,19 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addWatchTarget("src/**/*.{svg,webp,png,jpeg}");
 	
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
+	function getSvgContent(file) {
+		let relativeFilePath = `./public/${file}.svg`;
+		let data = fs.readFileSync(relativeFilePath, 
+		function(err, contents) {
+		   if (err) return err
+		   return contents
+		});
+  
+		return data.toString('utf8');
+	}
+  
+	eleventyConfig.addShortcode("svg", getSvgContent);
 
 	return {
 		templateFormats: [

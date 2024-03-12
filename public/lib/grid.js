@@ -117,7 +117,6 @@ registerPaint('grid', class {
             for (let w = 0; w < (geom.width / cellSize) + 1; w++) {
                 let hash = xyHash(w, h);
                 let duration = hash % 5000;
-                console.log(time)
                 let value = (Math.sin((time / speed) / duration * 2 * Math.PI) + 1.0) / 2.0;
                 
                 if (cursorPos) {

@@ -6,6 +6,7 @@ layout: ./main.njk
   {% svg "img/spread" %}
   <p>We help businesses<br/><span>scale</span>.</p>
 </div>
+<div class="shadeout"></div>
 
 <script>
   // Update hero property to re-render
@@ -99,7 +100,7 @@ layout: ./main.njk
     width: 100vw;
     width: 100svw;
     padding: 2rem;
-    margin-left: calc(var(--mainMargin) * -1);
+    margin-left: calc(var(--main-margin) * -1);
 
     background-image: paint(grid);
 
@@ -107,9 +108,18 @@ layout: ./main.njk
     cursor: crosshair;
   }
 
+  .shadeout {
+    display: block;
+    width: 100vw;
+    height: 60px;
+    margin-top: -60px;
+    margin-left: calc(var(--main-margin) * -1);
+    background: linear-gradient(to bottom, transparent, var(--c-bg) 75%);
+  }
+
   .hero svg {
     width: 30vw;
-    max-height: 70vh;
+    height: min-content;
     margin: 4rem 2rem;
   }
 
@@ -150,6 +160,7 @@ layout: ./main.njk
       margin: 0;
       margin-left: -5rem;
       width: 100%;
+      height: min-content
     }
 
     .hero p {
@@ -167,7 +178,7 @@ layout: ./main.njk
 
   @media screen and (width <= 600px) {
     .promo {
-        width: 95vw;
+      width: 95vw;
     }
   }
 

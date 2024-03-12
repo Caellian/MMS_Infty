@@ -28,6 +28,7 @@ module.exports = function(eleventyConfig) {
 	}
   
 	eleventyConfig.addShortcode("svg", getSvgContent);
+	eleventyConfig.addShortcode("icon", (path) => getSvgContent("icon/" + path));
 
 	return {
 		templateFormats: [

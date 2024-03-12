@@ -1,0 +1,128 @@
+:root
+  --nav-height: 3.5rem
+
+nav
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: var(--pad-small)
+
+  height: var(--nav-height)
+  padding: var(--pad-small)
+
+  border-bottom: 2px solid var(--c-border)
+  margin: var(--pad-small)
+  margin-bottom: 0
+
+  z-index: 10
+
+  h1
+    font-family: var(--fnt-accent)
+    margin: 0
+
+    a
+      text-decoration: none
+      color: white
+      display: flex
+      align-items: center
+      gap: 0.5ch
+
+      img
+        height: calc(var(--nav-height) * 0.6)
+        margin: 0
+
+  .links
+    display: flex
+    gap: 0.8rem
+
+    >a
+      display: inline-block
+      color: white
+      font-weight: bold
+      text-decoration: none
+      border-bottom: 2px solid var(--c-primary)
+
+      padding: var(--pad-tiny)
+      padding-bottom: calc(var(--pad-tiny) * 0.5)
+      margin-bottom: calc(var(--pad-tiny) * 0.5)
+
+      transition: all 200ms linear
+
+      &:hover
+        padding-bottom: var(--pad-tiny)
+        margin-bottom: 0
+
+  .sublinks
+    display: flex
+    flex-direction: column
+    padding: 1ch
+
+  button.menu
+    background: none
+    border: 1px solid var(--c-border)
+    outline: none
+    width: var(--nav-height)
+    height: var(--nav-height)
+    margin-right: calc(var(--pad-small) * -1)
+
+    svg
+      color: var(--c-primary)
+      width: 2rem
+      height: 2rem
+
+@media screen and (width > 500px)
+  nav
+    button.menu
+      display: none
+
+    .sublinks
+      display: none
+
+      position: absolute
+      background: var(--c-on-bg)
+      left: calc(var(--offset))
+      top: calc(var(--nav-height) + var(--pad-tiny) * 2)
+      transform: translateX(-50%)
+
+      &.show
+        display: flex
+        flex-direction: column
+
+    .sublinks::before
+      position: absolute
+      top: calc(-0.5ch - 3px)
+      left: 50%
+      content: ""
+      background: var(--c-on-bg)
+      border-top: 2px solid var(--c-border)
+      border-left: 2px solid var(--c-border)
+      width: 1ch
+      height: 1ch
+      transform: translateX(-50%) rotate(45deg)
+
+@media screen and (width <= 500px)
+  nav
+    .links
+      display: none
+      flex-direction: column
+
+      background: var(--c-bg)
+      width: 100vw
+      width: 100svw
+      height: calc(100vh - var(--nav-height))
+      height: calc(100svh - var(--nav-height))
+      min-height: max-content
+      padding: 1rem
+
+      position: absolute
+      top: calc(var(--nav-height) + var(--pad-tiny) * 2)
+      left: 0
+
+      overflow-y: scroll
+
+      >a
+        font-size: 1.5rem
+        margin-top: 1rem
+
+      &.show
+        display: flex

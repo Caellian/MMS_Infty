@@ -7,18 +7,32 @@
     <title>Infty - Tin Švagelj</title>
     
     <link rel="stylesheet" href="/MMS_Infty/css/global.css">
+    <link rel="stylesheet" href="/MMS_Infty/css/nav.css">
   </head>
   <body>
     <nav>
-        <h1><a href="/MMS_Infty/"><img src="/MMS_Infty/logo.svg"></a></h1>
-    
-        <div class="links">
-            <a href="/MMS_Infty/">Home</a>
-            <a href="/MMS_Infty/services">Services</a>
-            <a href="/MMS_Infty/contact">Contact</a>
-            <a href="/MMS_Infty/about">About Us</a>
-        </div>
-    </nav>
+      <h1><a href="/MMS_Infty/"><img src="/MMS_Infty/logo.svg"></a></h1>
+  
+      <div class="links">
+          <a href="/MMS_Infty/" data-name="home">Home</a>
+          <a href="/MMS_Infty/services" data-name="services">Services</a>
+          <div class="sublinks" data-for="services">
+              <a href="/MMS_Infty/consultin">Consulting</a>
+              <a href="/MMS_Infty/contracting">Contracting</a>
+              <a href="/MMS_Infty/certification">Certification</a>
+          </div>
+          <a href="/MMS_Infty/contact" data-name="contact">Contact</a>
+          <a href="/MMS_Infty/about" data-name="about">About Us</a>
+      </div>
+      <button class="menu">
+          <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg">
+    <line x1="4" x2="20" y1="12" y2="12"></line>
+    <line x1="4" x2="20" y1="6" y2="6"></line>
+    <line x1="4" x2="20" y1="18" y2="18"></line>
+</svg>
+
+      </button>
+  </nav>
 
     <noscript>
       <p>This page won't behave nicely without JavaScript enabled. Please, be reasonable and turn it on.</p>
@@ -28,7 +42,10 @@
       
 <h2>Consulting</h2>
 <div class="left-right bevel-bg">
-    <img src="/MMS_Infty/img/consulting.jpg">
+    <div class="image">
+        <img src="/MMS_Infty/img/consulting.jpg">
+        <p>(Source: unsplash.com)</p>
+    </div>
     <p>
         We believe in the power of collaboration and personalized advice. Our
         consulting services are designed to provide you with tailored solutions
@@ -47,13 +64,18 @@
         trust you place in us and strive to exceed your expectations at every
         step.
     </p>
-    <img src="/MMS_Infty/img/contracting.jpg">
+    <div class="image">
+        <img src="/MMS_Infty/img/contracting.jpg">
+        <p>(Source: unsplash.com)</p>
+    </div>
 </div>
 
 
 <h2>Certification</h2>
 <div class="left-right bevel-bg">
-    <img src="/MMS_Infty/img/verification.webp">
+    <div class="image">
+        <img src="/MMS_Infty/img/verification.webp">
+    </div>
     <p>
         Our certification services are designed to validate your skills and
         enhance your credibility in the tech industry. We offer a range of
@@ -62,22 +84,6 @@
         have the resources you need to succeed.
     </p>
 </div>
-
-<h3>Available Certificates</h3>
-
-<p>We can help you get your business certified with:</p>
-
-<ul class="certificates">
-    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 20000-1:2018:</a></b> This standard is for Information Technology Service Management.</li>
-    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 23894:2023:</a></b> This standard provides guidance on risk management for Artificial Intelligence.</li>
-    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 27017:2015:</a></b> This standard is a code of practice for information security controls based on ISO/IEC 27002 for cloud services.</li>
-    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 27005:2022:</a></b> This standard provides guidance on managing information security risks.</li>
-    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 27001:2022:</a></b> This standard is for Information Security Management Systems.</li>
-    <li><b><a href="https://www.iso.org/sectors/it-technologies">ISO/IEC 27002:2022:</a></b> This standard is for Information Security Controls.</li>
-    <li><b><a href="https://www.siscertifications.com/iso-certification-for-information-technology-industry/">ISO 9001:</a></b> This standard is for Quality Management System.</li>
-    <li><b><a href="https://www.siscertifications.com/iso-certification-for-information-technology-industry/">ISO 14001:</a></b> This standard is for Environmental Management System.</li>
-    <li><b><a href="https://www.siscertifications.com/iso-certification-for-information-technology-industry/">ISO 45001:</a></b> This standard is for Occupational Health and Safety Management System.</li>
-</ul>
 
 <style>
 .left-right {
@@ -94,6 +100,15 @@
     width: 40vw;
     max-width: 500px;
     object-fit: cover;
+}
+
+.image img {
+    margin-bottom: 0;
+}
+
+.image p {
+    font-size: 0.8rem;
+    text-align: center;
 }
 
 .left-right p {
@@ -131,32 +146,14 @@
     background-image: paint(bevel);
 }
 </style>
+
     </main>
 
     <footer>
       Copyright &copy; 2023 Tin Švagelj. All rights reserved.
     </footer>
 
-    <script>
-      // main ima auto margine na stranama, i za content koji treba izlaziti iz
-      // margine je korisno imati mjeru tih margina.
-
-      let main = document.querySelector("main");
-      if (main) {
-        // za praćenje promjene u veličini koristim ne standardan
-        // ResizeObserver, no podržan je u svim browserima osim IE
-        let mainResizeWatch = new ResizeObserver((entries) => {
-          let entry = entries.length > 0 && entries[0];
-          if (!entry) {
-            return;
-          }
-          let mainW = entry.contentRect.width;
-          main.style = `--mainMargin: ${(window.innerWidth - mainW) / 2}px`;
-        })
-        mainResizeWatch.observe(main);
-        main.style = `--mainMargin: ${(window.innerWidth - main.getBoundingClientRect().width) / 2}px`;
-      }
-    </script>
+    <script src="/MMS_Infty/lib/layout.js"></script>
 
     <!-- Houdini pozadine -->
     <script src="/MMS_Infty/lib/bg.js"></script>

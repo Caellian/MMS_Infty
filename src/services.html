@@ -26,7 +26,7 @@ layout: ./main.njk
             Our consulting services are designed to provide you with tailored
             solutions that meet your unique needs.
         </p>
-        <a href="/consulting/" class="btn">More</a>
+        <a href="/consulting/" class="btn">Tell Me More</a>
     </div>
 </section>
 
@@ -43,7 +43,7 @@ layout: ./main.njk
             committed to delivering high-quality results, on time and within
             budget.
         </p>
-        <a href="/contracting/" class="btn">More</a>
+        <a href="/contracting/" class="btn">Where Do I Sign Up?!</a>
     </div>
 </section>
 
@@ -60,14 +60,14 @@ layout: ./main.njk
             certifications that are recognized globally, providing you with a
             competitive edge.
         </p>
-        <a href="/certification/" class="btn">More</a>
+        <a href="/certification/" class="btn">I'm Interested</a>
     </div>
 </section>
 
 <style>
 section {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 0.4r 0.6fr;
     padding: 1rem;
     column-gap: 2rem;
     margin: 1rem;
@@ -92,14 +92,16 @@ section img {
     width: 40vw;
     max-width: 500px;
     object-fit: cover;
+    border-radius: var(--pad-small);
 }
 
 .content {
     display: flex;
     flex-direction: column;
+    margin-bottom: 3rem;
 }
 .content p {
-    flex-grow: 1;
+    margin: auto 0;
 }
 
 .certificates {

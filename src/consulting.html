@@ -38,29 +38,31 @@ layout: ./main.njk
 
 <h2>The Language Artisans</h2>
 
-<ul class="languages">
-    <li>{% icon "lang/c_sharp" %}</li>
-    <li>{% icon "lang/c" %}</li>
-    <li>{% icon "lang/cpp" %}</li>
-    <li>{% icon "lang/rust" %}</li>
-    <li>{% icon "lang/go" %}</li>
-    <li>{% icon "lang/objc" %}</li>
-    <li>{% icon "lang/swift" %}</li>
-    <li>{% icon "lang/java" %}</li>
-    <li>{% icon "lang/groovy" %}</li>
-    <li>{% icon "lang/kotlin" %}</li>
-    <li>{% icon "lang/scala" %}</li>
-    <li>{% icon "lang/haskell" %}</li>
-    <li>{% icon "lang/elixir" %}</li>
-    <li>{% icon "lang/zig" %}</li>
-    <li>{% icon "lang/html" %}</li>
-    <li>{% icon "lang/js" %}</li>
-    <li>{% icon "lang/ts" %}</li>
-    <li>{% icon "lang/perl" %}</li>
-    <li>{% icon "lang/python" %}</li>
-</ul>
-<div style="width:calc(6rem)" class="measure"></div>
-<div class="shade"></div>
+<div class="carousel">
+    <ul class="languages">
+        <li>{% icon "lang/c_sharp" %}</li>
+        <li>{% icon "lang/c" %}</li>
+        <li>{% icon "lang/cpp" %}</li>
+        <li>{% icon "lang/rust" %}</li>
+        <li>{% icon "lang/go" %}</li>
+        <li>{% icon "lang/objc" %}</li>
+        <li>{% icon "lang/swift" %}</li>
+        <li>{% icon "lang/java" %}</li>
+        <li>{% icon "lang/groovy" %}</li>
+        <li>{% icon "lang/kotlin" %}</li>
+        <li>{% icon "lang/scala" %}</li>
+        <li>{% icon "lang/haskell" %}</li>
+        <li>{% icon "lang/elixir" %}</li>
+        <li>{% icon "lang/zig" %}</li>
+        <li>{% icon "lang/html" %}</li>
+        <li>{% icon "lang/js" %}</li>
+        <li>{% icon "lang/ts" %}</li>
+        <li>{% icon "lang/perl" %}</li>
+        <li>{% icon "lang/python" %}</li>
+    </ul>
+    <div style="width:calc(var(--item-size) + var(--item-gap))" class="measure"></div>
+    <div class="shade"></div>
+</div>
 
 <p>
     Our team speaks the language of code fluently. Python, Rust, Scala, Ruby, C#
@@ -86,58 +88,80 @@ layout: ./main.njk
 </p>
 
 <script>
-const carousell = document.querySelector("ul.languages");
-const width = carousell.getBoundingClientRect().width;
-const itemWidth = (() => {
-    let measure = document.querySelector("div.measure");
-    return measure.getBoundingClientRect().width;
-})();
-const scrollSpeed = 20;
+const carousel = document.querySelector(".carousel");
+const langList = carousel.querySelector("ul.languages");
+const width = langList.getBoundingClientRect().width;
+const scrollSpeed = 15;
 
-let leftPad = 0;
-function shiftHiddenItems(count) {
-    let modify = Array.from(carousell.children).slice(0, count);
+function shiftFirstItem() {
+    let next = langList.children[0];
+    let minOrd = Number.MAX_VALUE;
+    for (const it of langList.children) {
+        let order = it.style.order;
+        if (order.length == 0) {
+            order = 0;
+        } else {
+            order = Number.parseInt(order);
+        }
 
-    for (const it of modify) {
-        it.style.order = 1
+        if (order == 0) {
+            next = it;
+            minOrd = 0;
+            break;
+        } else if (order < minOrd) {
+            minOrd = order;
+            next = it;
+        }
     }
-    leftPad = count * itemWidth;
-    carousell.setAttribute("style", `--pad-left:${leftPad}px`)
+    if (minOrd == 0) {
+        next.style.order = minOrd + 1;
+    } else {
+        for (const it of langList.children) {
+            it.style.order = "";
+        }
+        langList.children[0].style.order = 1;
+    }
 }
-function scrollToNextItem() {
-    if (leftPad < width) {
-        let itemsLeft = Math.floor(carousell.scrollLeft / itemWidth);
-        shiftHiddenItems(itemsLeft);
 
-        carousell.scrollTo({
-            left: carousell.scrollLeft + scrollSpeed,
+let itemWidth = null;
+function scrollToNextItem() {
+    if (itemWidth == null) {
+        let measure = carousel.querySelector(".measure");
+        itemWidth = measure.getBoundingClientRect().width;
+    }
+    if (langList.scrollLeft / itemWidth < 1) {
+        langList.scrollTo({
+            left: langList.scrollLeft + scrollSpeed,
             behavior: "smooth"
         });
     } else {
-        carousell.scrollTo({
+        shiftFirstItem();
+        langList.scrollTo({
             left: 0,
             behavior: "instant"
         });
-        for (const it of carousell.children) {
-            it.setAttribute("style", "");
-        }
-        carousell.setAttribute("style", `--pad-left:0px`);
-        leftPad = 0;
     }
     requestAnimationFrame(scrollToNextItem);
 }
-scrollToNextItem();
+requestAnimationFrame(scrollToNextItem);
 </script>
 
 <style>
-ul.languages {
+
+.carousel {
+    --item-size: 7rem;
+    --item-gap: 1rem;
+    --padding: 2ch;
+}
+
+.carousel ul.languages {
     display: flex;
     flex-direction: row;
     list-style: none;
-    height: calc(5rem + 4ch);
+    height: calc(var(--item-size) + var(--padding) * 2);
     max-width: 100%;
-    gap: 1rem;
-    padding: 2ch 0;
+    gap: var(--item-gap);
+    padding: var(--padding) 0;
     margin: 0;
 
     padding-left: var(--pad-left, 0);
@@ -145,26 +169,29 @@ ul.languages {
     overflow: scroll;
     scroll-behavior: smooth;
 
-    /*-ms-overflow-style: none;*/
-    /*scrollbar-width: none;*/
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-ul.languages li {
+.carousel ul.languages li {
     color: var(--c-border);
     order: 0;
 }
-ul.languages li svg {
-    width: 5rem;
-    height: 5rem;
+.carousel ul.languages li svg {
+    width: var(--item-size);
+    height: var(--item-size);
 }
 
-.shade {
+.carousel .shade {
     position: absolute;
     display: block;
-    height: calc(5rem + 4ch);
+    height: calc(var(--item-size) + var(--padding) * 2);
     width: 100%;
 
-    margin-top: calc((5rem + 4ch) * -1);
+    margin-top: calc((var(--item-size) + var(--padding) * 2) * -1);
     background-image: linear-gradient(to right,var(--c-bg), transparent 10%, transparent 90%, var(--c-bg));
+}
+.carousel .measure {
+    visibility: hidden;
 }
 </style>

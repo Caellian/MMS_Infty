@@ -120,4 +120,18 @@ button:active,
   height: 10vh;
 }
 
+.figure {
+  overflow: hidden;
+  margin: 2ch;
+}
+.figure img {
+  object-fit: contain;
+  margin: 0;
+  width: 100%;
+}
+.figure p {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 /*# sourceMappingURL=global.css.map */

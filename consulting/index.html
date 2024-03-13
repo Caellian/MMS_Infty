@@ -43,34 +43,39 @@
 
 <p>
     At Infty, our commitment extends beyond mere consultation. We are catalysts
-    for <strong>exponential growth</strong>, igniting transformation in the
-    technology landscape. As a premier and forward-thinking technology
-    consulting firm, we don't just solve problems; we orchestrate solutions that
-    resonate with small to medium-sized enterprises (SMEs). Our mission? To
-    unleash potential, amplify innovation, and forge success &mdash; all through
-    the elegant dance of code.
+    for <strong>exponential growth</strong>. We're jet fuel in the technology
+    landscape.
+</p>
+
+<div class="figure">
+    <img src="/MMS_Infty/img/shapes.jpg">
+    <p>(Source: unsplash.com)</p>
+</div>
+
+<p>
+    As a premier and forward-thinking technology consulting firm, we don't just
+    solve problems; we orchestrate solutions that fit small to medium-sized
+    enterprises (SMEs). Our mission? To <em>unleash potential</em>, <em>amplify
+    innovation</em>, and <em>forge success</em>.
 </p>
 <p>
-    Our canvas is vast, painted with the hues of cutting-edge technologies. From
-    cloud-native architectures that soar like eagles to machine learning
-    algorithms that unravel patterns, we weave innovation into the fabric of
-    business. Picture a tapestry where every thread represents an opportunity
-    &mdash; a chance to <em>elevate</em>, <em>evolve</em>, and <em>excel</em>.
-</p>
-<p>
-    So, when you think of Infty, envision more than a consultancy. Picture a
-    forge of possibilities, where challenges convert into triumphs, and where
-    every keystroke resonates with the symphony of progress.
+    When you think of Infty, envision more than a consultancy. We're a forge of
+    possibilities, where challenges meld into triumphs, and where every
+    keystroke resonates with the sound of progress.
 </p>
 
 <h2>Custom Solutions</h2>
 
 <p>
-    We recognize that every SME is a universe of its own. Cookie-cutter
-    solutions won't cut it. Our adept consultants collaborate closely with you,
-    dissecting your unique challenges, and architecting bespoke strategies. From
-    streamlining processes to optimizing workflows, we're your trusted
-    navigators.
+    We recognize that every SME is a universe of its own: cookie-cutter
+    solutions won't cut it.
+</p>
+
+<p>
+    Our adept consultants collaborate closely with you, dissecting your unique
+    challenges, and architecting unique strategies that fit your niche. From
+    streamlining processes to optimizing workflows, you can rest assured we've
+    got you covered.
 </p>
 
 <h2>The Language Artisans</h2>
@@ -173,20 +178,20 @@
 </div>
 
 <p>
-    Our team speaks the language of code fluently. Python, Rust, Scala, Ruby, C#
-    &mdash; you name it, we've mastered it. Need a web app? Consider it done.
-    Craving a robust simulation based on real world data? We'll weave the
-    digital fabric. Our wizards wield keyboards like wands, conjuring solutions
-    that defy limits.
+    Our team speaks the language of code fluently. Python, Rust, Scala, Zig, C#
+    &mdash; you name it, we've got an engineer with experience in it. Need a web
+    app? Consider it done. Craving a robust simulation based on real world data?
+    We'll weave the digital fabric. Our wizards wield keyboards like wands,
+    conjuring solutions that defy limits.
 </p>
 
 <h2>Experience</h2>
 
 <p>
-    Remember that clandestine project with Adobe? Yes, that was us. We collaborated
-    on enhancing their creative suite. Our consultants pirouetted with Photoshop,
-    waltzed with Illustrator, and tangoed with After Effects. The outcome? A
-    harmonious blend of efficiency and creativity.
+    Remember that clandestine project with Adobe? Yes, that was us. We
+    collaborated on enhancing their creative suite. Our consultants helped turn
+    their UI framework upside down and rearanged it into a more robust solution
+    that performs <em>15%</em> faster on modern systems.
 </p>
 
 <div class="spacer"></div>
@@ -196,10 +201,11 @@
 </p>
 
 <script>
+// Kod za carousel
 const carousel = document.querySelector(".carousel");
 const langList = carousel.querySelector("ul.languages");
 const width = langList.getBoundingClientRect().width;
-const scrollSpeed = 15;
+const scrollSpeed = 15; // Ne smije biti veći od širine jednog itema jer će carousel skakati
 
 function shiftFirstItem() {
     let next = langList.children[0];
@@ -233,10 +239,9 @@ function shiftFirstItem() {
 
 let itemWidth = null;
 function scrollToNextItem() {
-    if (itemWidth == null) {
-        let measure = carousel.querySelector(".measure");
-        itemWidth = measure.getBoundingClientRect().width;
-    }
+    // Jer su itemi uniformne širine je ova logika jednostavnija. Za iteme
+    // različitih veličina itemWidth mora biti updatean svaki put kada se shifta
+    // element da bude jednak prvom.
     if (langList.scrollLeft / itemWidth < 1) {
         langList.scrollTo({
             left: langList.scrollLeft + scrollSpeed,
@@ -251,10 +256,24 @@ function scrollToNextItem() {
     }
     requestAnimationFrame(scrollToNextItem);
 }
-requestAnimationFrame(scrollToNextItem);
+requestAnimationFrame(() => {
+    let measure = carousel.querySelector(".measure");
+    itemWidth = measure.getBoundingClientRect().width;
+
+    scrollToNextItem()
+});
+
+// Owl Carousel funkcionira malo drukčije (i mrvicu brže) jer ne rearrangea DOM
+// za svaki element nego kopira cijeli sadržaj dva put pa switcha dvije kopije
+// cijelog sadržaja u krug. Moja implementacija je jednostavnija jer su itemi
+// uniforme širine, u suprotnom bi bila kompliciranija i dosta sporija.
 </script>
 
 <style>
+.figure {
+    float: right;
+    width: 40ch;
+}
 
 .carousel {
     --item-size: 7rem;

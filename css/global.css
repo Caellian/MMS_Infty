@@ -12,8 +12,9 @@
   -moz-osx-font-smoothing: grayscale;
   --fnt-accent: "Anta", sans-serif;
   --c-on-bg: #2a2a2a;
+  --c-faint: #6b6b6b;
   --c-border: #808080;
-  --c-faint: #c2c2c280;
+  --c-alt: #cbcbcb;
   --c-primary: #00a2ab;
   --c-secondary: #0059c6;
   --pad-tiny: 0.25rem;
@@ -74,6 +75,34 @@ code {
   font-family: "Fira Code", "IBM Plex Mono", "Source Code Pro", monospace;
   font-size: 0.9rem;
   padding: 0 0.5ch;
+}
+
+button,
+.btn {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  outline: none;
+  padding: var(--pad-small);
+  margin: 1px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: var(--c-alt);
+}
+button:hover,
+.btn:hover {
+  background: var(--c-on-bg);
+  border: 2px solid var(--c-primary);
+  margin: 0;
+}
+button:active,
+.btn:active {
+  background: var(--c-primary);
+  border: 2px solid var(--c-bg);
+  margin: 0;
+  color: var(--c-bg);
 }
 
 .statement {

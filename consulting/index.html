@@ -174,7 +174,6 @@
 </li>
     </ul>
     <div style="width:calc(var(--item-size) + var(--item-gap))" class="measure"></div>
-    <div class="shade"></div>
 </div>
 
 <p>
@@ -259,6 +258,7 @@ function scrollToNextItem() {
 requestAnimationFrame(() => {
     let measure = carousel.querySelector(".measure");
     itemWidth = measure.getBoundingClientRect().width;
+    carousel.removeChild(measure);
 
     scrollToNextItem()
 });
@@ -276,6 +276,8 @@ requestAnimationFrame(() => {
 }
 
 .carousel {
+    position: relative;
+
     --item-size: 7rem;
     --item-gap: 1rem;
     --padding: 2ch;
@@ -309,17 +311,15 @@ requestAnimationFrame(() => {
     height: var(--item-size);
 }
 
-.carousel .shade {
+.carousel::after {
     position: absolute;
+    content: "";
     display: block;
     height: calc(var(--item-size) + var(--padding) * 2);
     width: 100%;
 
     margin-top: calc((var(--item-size) + var(--padding) * 2) * -1);
     background-image: linear-gradient(to right,var(--c-bg), transparent 10%, transparent 90%, var(--c-bg));
-}
-.carousel .measure {
-    visibility: hidden;
 }
 </style>
     </main>

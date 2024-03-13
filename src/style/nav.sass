@@ -46,7 +46,7 @@ nav
       padding-bottom: calc(var(--pad-tiny) * 0.5)
       margin-bottom: calc(var(--pad-tiny) * 0.5)
 
-      transition: all 200ms linear
+      transition: all 200ms cubic-bezier(.5,.96,.64,.99)
 
       &:hover
         padding-bottom: var(--pad-tiny)
@@ -58,17 +58,18 @@ nav
     padding: 1ch
 
   button.menu
-    background: none
-    border: 1px solid var(--c-border)
-    outline: none
     width: var(--nav-height)
     height: var(--nav-height)
     margin-right: calc(var(--pad-small) * -1)
 
     svg
-      color: var(--c-primary)
       width: 2rem
       height: 2rem
+      transition: transform 200ms cubic-bezier(.5,.96,.64,.99)
+
+    &.active
+      svg
+        transform: rotate(45deg)
 
 @media screen and (width > 500px)
   nav
@@ -77,6 +78,7 @@ nav
 
     .sublinks
       display: none
+      gap: 0.5rem
 
       position: absolute
       background: var(--c-on-bg)
@@ -87,6 +89,14 @@ nav
       &.show
         display: flex
         flex-direction: column
+
+      a
+        text-decoration: none
+        font-size: 1.1rem
+
+      a+a
+        border-top: 1px solid var(--c-border)
+        padding-top: var(--pad-small)
 
     .sublinks::before
       position: absolute

@@ -2,59 +2,81 @@
 layout: ./main.njk
 ---
 
-<h2>Consulting</h2>
-<div class="left-right bevel-bg">
-    <div class="image">
+<h1>Services</h1>
+
+<p>
+    We offer a wide range of services that help businesses make better decisions
+    for their future growth.
+</p>
+
+<p>
+    Our primary focus is consulting, but we've also developed complete and
+    scalable solutions for businesses and offer certification.
+</p>
+
+<section class="bevel-bg primary">
+    <h2>Consulting</h2>
+    <div class="figure">
         <img src="/img/consulting.jpg" />
         <p>(Source: unsplash.com)</p>
     </div>
-    <p>
-        We believe in the power of collaboration and personalized advice. Our
-        consulting services are designed to provide you with tailored solutions
-        that meet your unique needs. We take the time to understand your business,
-        identify opportunities, and create strategies that drive growth and
-        innovation.
-    </p>
-</div>
+    <div class="content">
+        <p>
+            We believe in the power of collaboration and personalized advice.
+            Our consulting services are designed to provide you with tailored
+            solutions that meet your unique needs.
+        </p>
+        <a href="/consulting/" class="btn">More</a>
+    </div>
+</section>
 
-<h2>Contracting</h2>
-<div class="left-right bevel-bg">
-    <p>
-        We offer contracting services that are flexible, reliable, and customized
-        to your project requirements. Our team of experts is committed to
-        delivering high-quality results, on time and within budget. We value the
-        trust you place in us and strive to exceed your expectations at every
-        step.
-    </p>
-    <div class="image">
+<section class="bevel-bg">
+    <h2>Contracting</h2>
+    <div class="figure">
         <img src="/img/contracting.jpg" />
         <p>(Source: unsplash.com)</p>
     </div>
-</div>
+    <div class="content">
+        <p>
+            We offer contracting services that are flexible, reliable, and
+            customized to your project requirements. Our team of experts is
+            committed to delivering high-quality results, on time and within
+            budget.
+        </p>
+        <a href="/contracting/" class="btn">More</a>
+    </div>
+</section>
 
 
-<h2>Certification</h2>
-<div class="left-right bevel-bg">
-    <div class="image">
+<section class="bevel-bg">
+    <h2>Certification</h2>
+    <div class="figure">
         <img src="/img/verification.webp" />
     </div>
-    <p>
-        Our certification services are designed to validate your skills and
-        enhance your credibility in the tech industry. We offer a range of
-        certifications that are recognized globally, providing you with a
-        competitive edge. Our approach is personal and supportive, ensuring you
-        have the resources you need to succeed.
-    </p>
-</div>
+    <div class="content">
+        <p>
+            Our certification services are designed to validate your skills and
+            enhance your credibility in the tech industry. We offer a range of
+            certifications that are recognized globally, providing you with a
+            competitive edge.
+        </p>
+        <a href="/certification/" class="btn">More</a>
+    </div>
+</section>
 
 <style>
-.left-right {
-    display: flex;
+section {
+    display: grid;
+    grid-template-columns: auto 1fr;
     padding: 1rem;
-    gap: 2rem;
+    column-gap: 2rem;
     margin: 1rem;
     --bevelCorners: tl br;
     --bevelFill: var(--c-on-bg);
+    --bevelStroke: var(--c-secondary);
+}
+
+section.primary {
     --bevelStroke: var(--c-primary);
 }
 
@@ -62,22 +84,30 @@ layout: ./main.njk
     background-image: paint(bevel);
 }
 
-.left-right img {
+section h2 {
+    grid-column: 1/3;
+}
+
+section img {
     width: 40vw;
     max-width: 500px;
     object-fit: cover;
 }
 
-.image img {
+.figure img {
     margin-bottom: 0;
 }
 
-.image p {
+.figure p {
     font-size: 0.8rem;
     text-align: center;
 }
 
-.left-right p {
+.content {
+    display: flex;
+    flex-direction: column;
+}
+.content p {
     flex-grow: 1;
 }
 
@@ -91,16 +121,16 @@ layout: ./main.njk
 }
 
 @media screen and (width <= 600px) {
-    .left-right {
-        flex-direction: column;
+    section {
+        grid-template-columns: 1fr;
     }
-    .left-right img {
+    section h2 {
+        grid-column: 1/2;
+    }
+    section img {
         order: 0;
         width: 90%;
         margin: 0 auto;
-    }
-    .left-right p {
-        order: 1;
     }
 
     .certificates {

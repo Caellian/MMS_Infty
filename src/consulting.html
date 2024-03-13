@@ -4,8 +4,6 @@ layout: ./main.njk
 
 <h1>Consulting</h1>
 
-
-
 <p>
     At Infty, our commitment extends beyond mere consultation. We are catalysts
     for <strong>exponential growth</strong>, igniting transformation in the
@@ -16,13 +14,6 @@ layout: ./main.njk
     the elegant dance of code.
 </p>
 <p>
-    Imagine a symphony where each line of code is a note, harmonizing disparate
-    elements into a seamless melody. Whether it's architecting robust systems,
-    streamlining workflows, or crafting intuitive interfaces, we're there
-    &mdash; shoulder to shoulder with SMEs, transforming obstacles into stepping
-    stones.
-</p>
-<p>
     Our canvas is vast, painted with the hues of cutting-edge technologies. From
     cloud-native architectures that soar like eagles to machine learning
     algorithms that unravel patterns, we weave innovation into the fabric of
@@ -31,8 +22,8 @@ layout: ./main.njk
 </p>
 <p>
     So, when you think of Infty, envision more than a consultancy. Picture a
-    forge of possibilities, where challenges metamorphose into triumphs, and
-    where every keystroke resonates with the symphony of progress.
+    forge of possibilities, where challenges convert into triumphs, and where
+    every keystroke resonates with the symphony of progress.
 </p>
 
 <h2>Custom Solutions</h2>
@@ -46,6 +37,30 @@ layout: ./main.njk
 </p>
 
 <h2>The Language Artisans</h2>
+
+<ul class="languages">
+    <li>{% icon "lang/c_sharp" %}</li>
+    <li>{% icon "lang/c" %}</li>
+    <li>{% icon "lang/cpp" %}</li>
+    <li>{% icon "lang/rust" %}</li>
+    <li>{% icon "lang/go" %}</li>
+    <li>{% icon "lang/objc" %}</li>
+    <li>{% icon "lang/swift" %}</li>
+    <li>{% icon "lang/java" %}</li>
+    <li>{% icon "lang/groovy" %}</li>
+    <li>{% icon "lang/kotlin" %}</li>
+    <li>{% icon "lang/scala" %}</li>
+    <li>{% icon "lang/haskell" %}</li>
+    <li>{% icon "lang/elixir" %}</li>
+    <li>{% icon "lang/zig" %}</li>
+    <li>{% icon "lang/html" %}</li>
+    <li>{% icon "lang/js" %}</li>
+    <li>{% icon "lang/ts" %}</li>
+    <li>{% icon "lang/perl" %}</li>
+    <li>{% icon "lang/python" %}</li>
+</ul>
+<div style="width:calc(6rem)" class="measure"></div>
+<div class="shade"></div>
 
 <p>
     Our team speaks the language of code fluently. Python, Rust, Scala, Ruby, C#
@@ -63,3 +78,78 @@ layout: ./main.njk
     waltzed with Illustrator, and tangoed with After Effects. The outcome? A
     harmonious blend of efficiency and creativity.
 </p>
+
+<div class="spacer"></div>
+
+<p class="statement">
+    We'll transform your obstacles into stepping stones. <a href="/contact/">Contact us</a>!
+</p>
+
+<script>
+const carousell = document.querySelector("ul.languages");
+const width = carousell.getBoundingClientRect().width;
+const itemWidth = (() => {
+    let measure = document.querySelector("div.measure");
+    return measure.getBoundingClientRect().width;
+})();
+const scrollSpeed = 20;
+
+function shiftHiddenItems(count) {
+    carousell.setAttribute("style", `--pad-left:${count * itemWidth}px`)
+}
+function scrollToNextItem() {
+    let itemsLeft = Math.floor(carousell.scrollLeft / itemWidth);
+    shiftHiddenItems(itemsLeft);
+
+    if (carousell.scrollWidth - width - itemWidth > carousell.scrollLeft) {
+        carousell.scrollTo({
+            left: carousell.scrollLeft + scrollSpeed,
+            behavior: "smooth"
+        });
+    } else {
+        carousell.scrollTo({
+            left: 0,
+            behavior: "instant"
+        });
+    }
+    requestAnimationFrame(scrollToNextItem);
+}
+scrollToNextItem();
+</script>
+
+<style>
+ul.languages {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    height: calc(5rem + 4ch);
+    gap: 1rem;
+    padding: 2ch 0;
+    margin: 0;
+
+    padding-left: var(--pad-left, 0);
+
+    overflow: scroll;
+    scroll-behavior: smooth;
+
+    /*-ms-overflow-style: none;*/
+    /*scrollbar-width: none;*/
+}
+
+.shade {
+    position: absolute;
+    display: block;
+    height: calc(5rem + 4ch);
+    width: 100%;
+
+    margin-top: calc((5rem + 4ch) * -1);
+    background-image: linear-gradient(to right,var(--c-bg), transparent 10%, transparent 90%, var(--c-bg));
+}
+ul.languages li {
+    color: var(--c-border)
+}
+ul.languages li svg {
+    width: 5rem;
+    height: 5rem;
+}
+</style>

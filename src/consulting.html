@@ -94,14 +94,21 @@ const itemWidth = (() => {
 })();
 const scrollSpeed = 20;
 
+let leftPad = 0;
 function shiftHiddenItems(count) {
-    carousell.setAttribute("style", `--pad-left:${count * itemWidth}px`)
+    let modify = Array.from(carousell.children).slice(0, count);
+
+    for (const it of modify) {
+        it.style.order = 1
+    }
+    leftPad = count * itemWidth;
+    carousell.setAttribute("style", `--pad-left:${leftPad}px`)
 }
 function scrollToNextItem() {
-    let itemsLeft = Math.floor(carousell.scrollLeft / itemWidth);
-    shiftHiddenItems(itemsLeft);
+    if (leftPad < width) {
+        let itemsLeft = Math.floor(carousell.scrollLeft / itemWidth);
+        shiftHiddenItems(itemsLeft);
 
-    if (carousell.scrollWidth - width - itemWidth > carousell.scrollLeft) {
         carousell.scrollTo({
             left: carousell.scrollLeft + scrollSpeed,
             behavior: "smooth"
@@ -111,6 +118,11 @@ function scrollToNextItem() {
             left: 0,
             behavior: "instant"
         });
+        for (const it of carousell.children) {
+            it.setAttribute("style", "");
+        }
+        carousell.setAttribute("style", `--pad-left:0px`);
+        leftPad = 0;
     }
     requestAnimationFrame(scrollToNextItem);
 }
@@ -123,6 +135,7 @@ ul.languages {
     flex-direction: row;
     list-style: none;
     height: calc(5rem + 4ch);
+    max-width: 100%;
     gap: 1rem;
     padding: 2ch 0;
     margin: 0;
@@ -136,6 +149,15 @@ ul.languages {
     /*scrollbar-width: none;*/
 }
 
+ul.languages li {
+    color: var(--c-border);
+    order: 0;
+}
+ul.languages li svg {
+    width: 5rem;
+    height: 5rem;
+}
+
 .shade {
     position: absolute;
     display: block;
@@ -144,12 +166,5 @@ ul.languages {
 
     margin-top: calc((5rem + 4ch) * -1);
     background-image: linear-gradient(to right,var(--c-bg), transparent 10%, transparent 90%, var(--c-bg));
-}
-ul.languages li {
-    color: var(--c-border)
-}
-ul.languages li svg {
-    width: 5rem;
-    height: 5rem;
 }
 </style>

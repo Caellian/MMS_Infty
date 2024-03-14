@@ -65,10 +65,10 @@ nav
     svg
       width: 2rem
       height: 2rem
-      transition: transform 200ms cubic-bezier(.5,.96,.64,.99)
+      transition: transform 400ms cubic-bezier(.5,.96,.64,.99)
 
       line
-        transition: transform 200ms cubic-bezier(.5,.96,.64,.99)
+        transition: transform 400ms cubic-bezier(.5,.96,.64,.99)
 
     &.active
       svg
@@ -129,8 +129,8 @@ nav
       background: var(--c-bg)
       width: 100vw
       width: 100svw
-      height: calc(100vh - var(--nav-height))
-      height: calc(100svh - var(--nav-height))
+      height: calc(100vh - var(--nav-height) - var(--pad-small))
+      height: calc(100svh - var(--nav-height) - var(--pad-small))
       min-height: max-content
       padding: 1rem
 

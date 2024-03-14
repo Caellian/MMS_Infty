@@ -1,17 +1,20 @@
 // main ima auto margine na stranama, i za content koji treba izlaziti iz
 // margine je korisno imati mjeru tih margina.
 
-let main = document.querySelector("main");
-if (main) {
-    // za praćenje promjene u veličini koristim ne standardan
-    // ResizeObserver, no podržan je u svim browserima osim IE
-    let mainResizeWatch = new ResizeObserver((entries) => {
-        let mainW = main.getBoundingClientRect().width;
-        main.style = `--main-margin: ${(window.innerWidth - mainW) / 2}px`;
-    })
-    mainResizeWatch.observe(document.querySelector("body"));
-    main.style = `--main-margin: ${(window.innerWidth - main.getBoundingClientRect().width) / 2}px`;
+const main = document.querySelector("main");
+
+let hideMain = false;
+function updateMainStyle() {
+    let margin = (window.innerWidth - main.getBoundingClientRect().width) / 2;
+    if (hideMain) {
+        main.style = `display:none;`;
+    } else {
+        main.style = `--main-margin: ${margin}px;`;
+    }
 }
+let mainResizeWatch = new ResizeObserver(updateMainStyle)
+mainResizeWatch.observe(document.querySelector("body"));
+updateMainStyle();
 
 // Kod za navbar
 
@@ -21,13 +24,15 @@ let navLinks = navBar.getElementsByClassName("links")[0];
 let menuButton = navBar.querySelector("button.menu");
 
 menuButton.addEventListener("click", () => {
-    if (navLinks.classList.contains("show")) {
-        navLinks.classList.remove("show");
-        menuButton.classList.remove("active");
-    } else {
+    hideMain = !navLinks.classList.contains("show");
+    if (hideMain) {
         navLinks.classList.add("show");
         menuButton.classList.add("active");
+    } else {
+        navLinks.classList.remove("show");
+        menuButton.classList.remove("active");
     }
+    updateMainStyle();
 });
 
 function updateSubmenuOffset(submenu) {

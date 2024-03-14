@@ -1,5 +1,7 @@
 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="200px" width="200px"
     xmlns="http://www.w3.org/2000/svg">
-    <line x1="4" x2="20" y1="12" y2="12"></line>
-    <line y1="4" y2="20" x1="12" x2="12"></line>
+    <line class="top" x1="4" x2="20" y1="6" y2="6"></line>
+    <line class="middle" x1="4" x2="20" y1="12" y2="12"></line>
+    <line class="cross" y1="28" y2="44" x1="12" x2="12"></line>
+    <line class="bottom" x1="4" x2="20" y1="18" y2="18"></line>
 </svg>

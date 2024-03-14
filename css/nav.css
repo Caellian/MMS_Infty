@@ -63,8 +63,20 @@ nav button.menu svg {
   height: 2rem;
   transition: transform 200ms cubic-bezier(0.5, 0.96, 0.64, 0.99);
 }
+nav button.menu svg line {
+  transition: transform 200ms cubic-bezier(0.5, 0.96, 0.64, 0.99);
+}
 nav button.menu.active svg {
   transform: rotate(45deg);
+}
+nav button.menu.active svg line.top {
+  transform: translateX(100%);
+}
+nav button.menu.active svg line.bottom {
+  transform: translateX(-100%);
+}
+nav button.menu.active svg line.cross {
+  transform: translateY(-100%);
 }
 
 @media screen and (width > 500px) {

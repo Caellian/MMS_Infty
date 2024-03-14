@@ -85,7 +85,7 @@ function updateSectionDisplay() {
     for (const menu of Submenus) {
         menu.classList.remove("show")
     }
-    if (currentSection != null) {
+    if (currentSection != null && NavData[currentSection].submenu != null) {
         NavData[currentSection].submenu.classList.add("show");
     }
 }

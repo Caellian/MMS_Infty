@@ -28,6 +28,8 @@ async function run() {
         }
     }
     
+    // TODO: Firefox ne podržava CSS Typed OM: https://bugzilla.mozilla.org/show_bug.cgi?id=1278697
+    // Props su stringovi do tada.
     loadModule("grid");
     loadModule("bevel");
 }

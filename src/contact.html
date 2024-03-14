@@ -133,6 +133,7 @@ requestAnimationFrame(() => {
 <style>
 .content {
     display: grid;
+    gap: 2ch;
     grid-template-columns: 1fr 1fr;
 }
 
@@ -163,5 +164,11 @@ requestAnimationFrame(() => {
 
 .bevel-bg {
     background-image: paint(bevel);
+}
+
+@media screen and (width <= 80ch) {
+    .content {
+        grid-template-columns: 1fr;
+    }
 }
 </style>

@@ -175,7 +175,6 @@
 </svg>
 </li>
     </ul>
-    <div style="width:calc(var(--item-size) + var(--item-gap))" class="measure"></div>
 </div>
 
 <p>
@@ -202,23 +201,29 @@
 </p>
 
 <script>
-// Kod za carousel
 const carousel = document.querySelector(".carousel");
 const langList = carousel.querySelector("ul.languages");
 const width = langList.getBoundingClientRect().width;
-const scrollSpeed = 15; // Ne smije biti veći od širine jednog itema jer će carousel skakati
+const itemDuration = 800;
 
-function shiftFirstItem() {
+function itemOrder(item) {
+    let order = item.style.order;
+    if (order == null || order.length == 0) {
+        order = 0;
+    } else {
+        try {
+            order = Number.parseInt(order);
+        } catch (e) {
+            order = 0;
+        }
+    }
+    return order;
+}
+function firstItem() {
     let next = langList.children[0];
     let minOrd = Number.MAX_VALUE;
     for (const it of langList.children) {
-        let order = it.style.order;
-        if (order.length == 0) {
-            order = 0;
-        } else {
-            order = Number.parseInt(order);
-        }
-
+        let order = itemOrder(it);
         if (order == 0) {
             next = it;
             minOrd = 0;
@@ -228,8 +233,12 @@ function shiftFirstItem() {
             next = it;
         }
     }
-    if (minOrd == 0) {
-        next.style.order = minOrd + 1;
+    return next;
+}
+function shiftFirstItem() {
+    let next = firstItem();
+    if (itemOrder(next) == 0) {
+        next.style.order = 1;
     } else {
         for (const it of langList.children) {
             it.style.order = "";
@@ -237,38 +246,42 @@ function shiftFirstItem() {
         langList.children[0].style.order = 1;
     }
 }
-
-let itemWidth = null;
-function scrollToNextItem() {
-    // Jer su itemi uniformne širine je ova logika jednostavnija. Za iteme
-    // različitih veličina itemWidth mora biti updatean svaki put kada se shifta
-    // element da bude jednak prvom.
-    if (langList.scrollLeft / itemWidth < 1) {
-        langList.scrollTo({
-            left: langList.scrollLeft + scrollSpeed,
-            behavior: "smooth"
-        });
-    } else {
-        shiftFirstItem();
-        langList.scrollTo({
-            left: 0,
-            behavior: "instant"
-        });
+function readPxProp(el, prop) {
+    // TODO: Koristiti od elementa computedStyleMap() kada se doda CSS Typed OM u FF.
+    // - https://drafts.css-houdini.org/css-typed-om/#dom-element-computedstylemap
+    // - https://bugzilla.mozilla.org/show_bug.cgi?id=1278697
+    let value = window.getComputedStyle(el)[prop];
+    if (value == null) {
+        return 0;
     }
-    requestAnimationFrame(scrollToNextItem);
+    let parsed = Number.parseFloat(value.toString().slice(0, -2));
+    if (!Number.isNaN(parsed)) {
+        return parsed
+    }
+    return 0;
 }
-requestAnimationFrame(() => {
-    let measure = carousel.querySelector(".measure");
-    itemWidth = measure.getBoundingClientRect().width;
-    carousel.removeChild(measure);
 
-    scrollToNextItem()
-});
+let currentOffset = 0;
+function scrollToNextItem() {
+    let first = firstItem();
+    let itemWidth = first.getBoundingClientRect().width + readPxProp(langList, "columnGap");
 
-// Owl Carousel funkcionira malo drukčije (i mrvicu brže) jer ne rearrangea DOM
-// za svaki element nego kopira cijeli sadržaj dva put pa switcha dvije kopije
-// cijelog sadržaja u krug. Moja implementacija je jednostavnija jer su itemi
-// uniforme širine, u suprotnom bi bila kompliciranija i dosta sporija.
+    let anim = langList.animate([
+        {
+            transform: "translateX(0px)"
+        }, {
+            transform: `translateX(-${itemWidth}px)`
+        }
+    ], {
+        duration: itemDuration,
+        fill: "none",
+    });
+    anim.onfinish = () => {
+        shiftFirstItem();
+        requestAnimationFrame(scrollToNextItem);
+    };
+}
+requestAnimationFrame(scrollToNextItem);
 </script>
 
 <style>
@@ -279,6 +292,7 @@ requestAnimationFrame(() => {
 
 .carousel {
     position: relative;
+    overflow: hidden;
 
     --item-size: 7rem;
     --item-gap: 1rem;
@@ -290,18 +304,10 @@ requestAnimationFrame(() => {
     flex-direction: row;
     list-style: none;
     height: calc(var(--item-size) + var(--padding) * 2);
-    max-width: 100%;
+    width: max-content;
     gap: var(--item-gap);
     padding: var(--padding) 0;
     margin: 0;
-
-    padding-left: var(--pad-left, 0);
-
-    overflow: scroll;
-    scroll-behavior: smooth;
-
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 .carousel ul.languages li {

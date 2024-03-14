@@ -67,9 +67,19 @@ nav
       height: 2rem
       transition: transform 200ms cubic-bezier(.5,.96,.64,.99)
 
+      line
+        transition: transform 200ms cubic-bezier(.5,.96,.64,.99)
+
     &.active
       svg
         transform: rotate(45deg)
+
+        line.top
+          transform: translateX(100%)
+        line.bottom
+          transform: translateX(-100%)
+        line.cross
+          transform: translateY(-100%)
 
 @media screen and (width > 500px)
   nav

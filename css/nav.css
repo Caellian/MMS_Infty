@@ -61,10 +61,10 @@ nav button.menu {
 nav button.menu svg {
   width: 2rem;
   height: 2rem;
-  transition: transform 200ms cubic-bezier(0.5, 0.96, 0.64, 0.99);
+  transition: transform 400ms cubic-bezier(0.5, 0.96, 0.64, 0.99);
 }
 nav button.menu svg line {
-  transition: transform 200ms cubic-bezier(0.5, 0.96, 0.64, 0.99);
+  transition: transform 400ms cubic-bezier(0.5, 0.96, 0.64, 0.99);
 }
 nav button.menu.active svg {
   transform: rotate(45deg);
@@ -124,8 +124,8 @@ nav button.menu.active svg line.cross {
     background: var(--c-bg);
     width: 100vw;
     width: 100svw;
-    height: calc(100vh - var(--nav-height));
-    height: calc(100svh - var(--nav-height));
+    height: calc(100vh - var(--nav-height) - var(--pad-small));
+    height: calc(100svh - var(--nav-height) - var(--pad-small));
     min-height: max-content;
     padding: 1rem;
     position: absolute;
